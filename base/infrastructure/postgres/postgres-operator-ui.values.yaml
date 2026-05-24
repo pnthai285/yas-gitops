@@ -1,0 +1,10 @@
+hostname: &hostname pgoperator.yasdevops.dev
+ingress:
+  enabled: true
+  annotations:
+    ingressClassName: "nginx"
+  hosts:
+    - host: *hostname
+      paths:
+        - "/"
+  tls: []

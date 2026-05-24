@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: postgres-operator-ui
+  namespace: postgres
+  annotations:
+    spec.ingressClassName: nginx
+spec:
+  rules:
+  - host: pgoperator.yasdevops.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: postgres-operator
+            port:
+              number: 8080

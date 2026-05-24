@@ -1,0 +1,16 @@
+# Kubernetes/Kubeconfig
+.kube/
+kubeconfig
+
+# Helm
+charts/
+*.tgz
+
+# Local cluster tools
+.minikube/
+.vagrant/
+
+# Secrets (Always double-check manifests)
+*.key
+*.pem
+*.cert

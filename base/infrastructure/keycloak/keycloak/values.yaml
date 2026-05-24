@@ -1,0 +1,14 @@
+hostname: identity.yasdevops.dev   
+backofficeRedirectUrl: https://backoffice.yasdevops.dev
+storefrontRedirectUrl: https://storefront.yasdevops.dev
+ingress:
+  enabled: true
+  className: nginx
+
+postgresql:
+  username: yasadminuser
+  password: admin
+
+bootstrapAdmin:
+  username: admin
+  password: admin
