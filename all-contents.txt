@@ -18,57 +18,6 @@ charts/
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/.gitignore =====
 
-===== FILE: /home/pnt/study/devops/project/yas-gitops/.kube/k3s-config.yaml =====
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkekNDQVIyZ0F3SUJBZ0lCQURBS0JnZ3Foa2pPUFFRREFqQWpNU0V3SHdZRFZRUUREQmhyTTNNdGMyVnkKZG1WeUxXTmhRREUzTnprME16VTNOekl3SGhjTk1qWXdOVEl5TURZME1qVXlXaGNOTXpZd05URTVNRFkwTWpVeQpXakFqTVNFd0h3WURWUVFEREJock0zTXRjMlZ5ZG1WeUxXTmhRREUzTnprME16VTNOekl3V1RBVEJnY3Foa2pPClBRSUJCZ2dxaGtqT1BRTUJCd05DQUFSNUFZQTNVb0tQc2kzZ1NaMjh4bk9jNW5yK01hSzkrQldLSkxxSndiWkEKTEt1aitoUk9scnZKa2E1U01rZFd2TmZjMlM1QzN4a3BjYWo2ai9YSCtQT2tvMEl3UURBT0JnTlZIUThCQWY4RQpCQU1DQXFRd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVUhyRHJHQldCQ2Vub1lNd1k3d0I1Ck1UTUNEWmd3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUlnUW1hL3pjLzNpUTZBcDQ3aXcyeVV0a3FmdjdFWU10eVkKMWpuaEQraERwNW9DSVFDYmZ1ZmFkc2drYkJKN0k0bEdPWFV2Nm5XYUZxbmdVdHo4V1FHVmxpck9jQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
-    server: https://127.0.0.1:6443
-  name: default
-contexts:
-- context:
-    cluster: default
-    user: default
-  name: default
-current-context: default
-kind: Config
-users:
-- name: default
-  user:
-    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJrakNDQVRlZ0F3SUJBZ0lJT1ltTkx4UmtXOXN3Q2dZSUtvWkl6ajBFQXdJd0l6RWhNQjhHQTFVRUF3d1kKYXpOekxXTnNhV1Z1ZEMxallVQXhOemM1TkRNMU56Y3lNQjRYRFRJMk1EVXlNakEyTkRJMU1sb1hEVEkzTURVeQpNakEyTkRJMU1sb3dNREVYTUJVR0ExVUVDaE1PYzNsemRHVnRPbTFoYzNSbGNuTXhGVEFUQmdOVkJBTVRESE41CmMzUmxiVHBoWkcxcGJqQlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VIQTBJQUJJYWY3MUNiaVVSUVVyY08Kenk4eGd1UUxyNzNsOFVvZzBUZHgwYy90M0hHMzYycklmdWxIUVk5QURFbk9tNE12RVZ4dDJka0JrVnRua2xidwpPWUZSaCsralNEQkdNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUtCZ2dyQmdFRkJRY0RBakFmCkJnTlZIU01FR0RBV2dCUnhkNWVOT0Q4ZC93K0w1TDJUZklRb3E5eklYREFLQmdncWhrak9QUVFEQWdOSkFEQkcKQWlFQXFoWFFKK3NSa0lSNWVKdXgyYUU1dGxnWURyY0djNlNqSlJjZ2xMQ0FqbThDSVFEd1FqTk51TC9ZaDE3ZQpiNjNJd0V5dWNsUFhoSGIvdGxHOWJZV1N3SmlqK2c9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCi0tLS0tQkVHSU4gQ0VSVElGSUNBVEUtLS0tLQpNSUlCZURDQ0FSMmdBd0lCQWdJQkFEQUtCZ2dxaGtqT1BRUURBakFqTVNFd0h3WURWUVFEREJock0zTXRZMnhwClpXNTBMV05oUURFM056azBNelUzTnpJd0hoY05Nall3TlRJeU1EWTBNalV5V2hjTk16WXdOVEU1TURZME1qVXkKV2pBak1TRXdId1lEVlFRRERCaHJNM010WTJ4cFpXNTBMV05oUURFM056azBNelUzTnpJd1dUQVRCZ2NxaGtqTwpQUUlCQmdncWhrak9QUU1CQndOQ0FBVDRFMjJQMG5mRTBrK05Ja04rYUN2QlpSNG9Wa0JCNXZiWS9Sc2tIY3oyCjZVM1J6cHBzdVQ0NjBwL3RJdzh1WjZpWDh4bkhXOUcrSjNSazFhSWpYaGFzbzBJd1FEQU9CZ05WSFE4QkFmOEUKQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVjWGVYalRnL0hmOFBpK1M5azN5RQpLS3ZjeUZ3d0NnWUlLb1pJemowRUF3SURTUUF3UmdJaEFOVFZhRzltcGdtLy8weXE2TTUzcVJWMko2blQ0eUk5CnY4ckxWekVQMm5rcEFpRUE0MTY2eHgzUDBtT1c2K2lieUJiMFFJUGJVWG9LT1hUbm1VU3dPY0FrM1JzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-    client-key-data: LS0tLS1CRUdJTiBFQyBQUklWQVRFIEtFWS0tLS0tCk1IY0NBUUVFSUJSL0w0dDQrOUw2NlN2RmM5OVZmdFpoMkphTHdZVVlYcGR3TVB2bTNJMWFvQW9HQ0NxR1NNNDkKQXdFSG9VUURRZ0FFaHAvdlVKdUpSRkJTdHc3UEx6R0M1QXV2dmVYeFNpRFJOM0hSeiszY2NiZnJhc2grNlVkQgpqMEFNU2M2Ymd5OFJYRzNaMlFHUlcyZVNWdkE1Z1ZHSDd3PT0KLS0tLS1FTkQgRUMgUFJJVkFURSBLRVktLS0tLQo=
-===== END FILE: /home/pnt/study/devops/project/yas-gitops/.kube/k3s-config.yaml =====
-
-===== FILE: /home/pnt/study/devops/project/yas-gitops/.kube/yas-key.pem =====
------BEGIN RSA PRIVATE KEY-----
-MIIEowIBAAKCAQEA1yOvZ4EXDsqZvgQb8VxUGQgDt+hmCNJzHnWSyT2z/N4MLV/M
-Ybb4HY1o5RWCtTv9W2pyEMXG8qCNaScMNuFCpB/eIOOnPWIh7YT4D80zmULYG4lh
-fF4MNlvTep/bSVr7xuqzeoF47eQG9YTwsnvNaZvgl51WRmpTWSscw6jexN8bMPEa
-7vg9KRdUdc+UByKPkVGT+ZBf/HU/k/NN9VSUixpdLbxVOvrpq7dU904y0hzDFXOk
-7Kols9mXtprcUzYt6C/OdVfKta7yyBhbT1ueYj0nnV4xh2lXFnugTImUiEZF8aM3
-ot6XvMyEegOfYYBlEEFp7xf6vUHZZw902PA7dwIDAQABAoIBAGMHmxsC0fFOExzj
-WVVtkYyAIu4JvMX80V7I8gtOKsaQE3zjZvnntigsSoeAskzoU0Q8KEtOLrjKbK1l
-evrcD8fqn132TKo1vLZPibwEUecPXNi4ETalN+vhsuP0J4WJqvGyYXFXnamrWAS1
-7/HIiRI+3VAM7YS2Nq2J6dCqr/hgfbKGkYqNDu0XOnzsMfXZvmXZIHSGYkNSCWLa
-z3fCEqCf8cR0dRk5sXrIU5oxpzchlttKjaIyU1zvnJ3cUPNyzJT8sJjM3er2HA3Q
-rXE+Fq+GhZ5cl/6TIbiosAVzmGfzTzMiTDdqId4OekU9CBte0ctSnpKf/x5Msupy
-ewrd2ekCgYEA/fTkfRHowd7PPYMu4XcoBOv/Cun6maSALz9iAKQRv7CUAnsKq2QQ
-sz//xCtILb6nd9HgQtweIT77IDso6vvb2NCp+C5NuHtyKmskLN4ZpCU2EfidmLfT
-RQPFQKM6GDTaZ/ixwijbt8X/j2bMN+/u0moZtqNPsFcHPBh27yFTY00CgYEA2N7V
-9Qga97zKqQau3J5+DpUijWz50994G8mY/wUYAeImIrhpZk9Tas0n8ZW+iblWZ5vJ
-AeB7Z8aKFbW8lFxwKrbSSrGuHkd5ustiukKN4t73TsOzBk428oyNYUxKB8GZRl+C
-qVZq50tg6weqDogKWqGRryCVVXRGZlu6mSxDb9MCgYB/8+9bhLZ9V8GbAImSV/L1
-5+Hsoc79soBTTeAW6pN2vYUVauEJUbWIWuqG8DfBtJm0KS6RAU68+XqV1rjbDGLM
-bvX0cX//P1NaQ/lKEe1hYs5HZ7gfxh7QWwH7e0I+CAMy9364kNWDVmNY4TZryJvP
-sF2cQ9RWyMKAaOMjwOq+0QKBgQCTDsfW2CAxTXu/EiEQyQiBqu87J2JhIW+4qANv
-Km0VGdzyPkp6beAK1AL59qi1i0/kAedTtnz36dFI12uAzw3gaQhATivbrGwHFlNk
-Ki08YiUg6+NBq1fnMRfNmoW4rLba2XkoiskC/kJCHXhbUjRzMIwxTM72m1oBnsHx
-i+pOsQKBgFGxPScK1SA54msxWwpPUglnkVz+IclJiKJY57ZCu6TSBRQr/qq2tPY6
-dsNlmGZfZYYMtD6ndfoTMJnlu4kK6XjxXvNMtFw4xypi53hCbDKbu3EsOx2wjZxV
-sIVClWiDFq4VsuPidmq+wRwonW+VbcsCgUnJgfkz9hH6qdORkRpN
------END RSA PRIVATE KEY-----
-===== END FILE: /home/pnt/study/devops/project/yas-gitops/.kube/yas-key.pem =====
-
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/.vscode/mcp.json =====
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/.vscode/mcp.json =====
@@ -271,57 +220,70 @@ helm repo update
 read -rd '' DOMAIN \
 < <(yq -r '.domain' ./base/infrastructure/cluster-config.yaml)
 
+NAMESPACE="${NAMESPACE:-yas-dev}"
+ENVIRONMENT="${ENVIRONMENT:-dev}"
+API_HOST="${API_HOST:-api.$DOMAIN}"
+BACKOFFICE_HOST="${BACKOFFICE_HOST:-backoffice.$DOMAIN}"
+STOREFRONT_HOST="${STOREFRONT_HOST:-storefront.$DOMAIN}"
+
 helm dependency build base/microservices/backoffice-bff
 helm upgrade --install backoffice-bff base/microservices/backoffice-bff \
---namespace yas --create-namespace \
---set backend.ingress.host="backoffice.$DOMAIN"
+--namespace "$NAMESPACE" --create-namespace \
+--set global.environment="$ENVIRONMENT" \
+--set global.backofficeHost="$BACKOFFICE_HOST"
 
 helm dependency build base/microservices/backoffice-ui
 helm upgrade --install backoffice-ui base/microservices/backoffice-ui \
---namespace yas --create-namespace
+--namespace "$NAMESPACE" --create-namespace
 
 sleep 60
 
 helm dependency build base/microservices/storefront-bff
 helm upgrade --install storefront-bff base/microservices/storefront-bff \
---namespace yas --create-namespace \
---set backend.ingress.host="storefront.$DOMAIN"
+--namespace "$NAMESPACE" --create-namespace \
+--set global.environment="$ENVIRONMENT" \
+--set global.storefrontHost="$STOREFRONT_HOST"
 
 helm dependency build base/microservices/storefront-ui
 helm upgrade --install storefront-ui base/microservices/storefront-ui \
---namespace yas --create-namespace
+--namespace "$NAMESPACE" --create-namespace \
+--set global.storefrontHost="$STOREFRONT_HOST"
 
 sleep 60
 
 helm upgrade --install swagger-ui base/microservices/swagger-ui \
---namespace yas --create-namespace \
---set ingress.host="api.$DOMAIN"
+--namespace "$NAMESPACE" --create-namespace \
+--set global.apiHost="$API_HOST" \
+--set global.apiUrl="https://$API_HOST" \
+--set ingress.host="$API_HOST"
 
 sleep 20
 
 
 # manual Search
 #helm dependency build base/microservices/search
-#helm upgrade --install search base/microservices/search --namespace yas --set backend.ingress.host="api.$DOMAIN"
+# helm upgrade --install search base/microservices/search --namespace "$NAMESPACE" --set backend.ingress.host="$API_HOST"
 
 # Cập nhật config tổng khi có thay đổi values.yaml trong yas-configuration 
-# helm upgrade --install yas-configuration base/microservices/yas-configuration --namespace yas
+# helm upgrade --install yas-configuration base/microservices/yas-configuration --namespace "$NAMESPACE"
 
 # for chart in {"cart","customer","inventory","location","media","order","payment","payment-paypal","product","promotion","rating","search","tax","recommendation","webhook","sampledata"} ; do
 #     helm dependency build base/microservices/"$chart"
 #     helm upgrade --install "$chart" base/microservices/"$chart" \
-#     --namespace yas --create-namespace \
-#     --set backend.ingress.host="api.$DOMAIN"
+#     --namespace "$NAMESPACE" --create-namespace \
+#     --set backend.ingress.host="$API_HOST"
 #     sleep 60
 # done
 
 for chart in {"cart","customer","inventory","media","order","product","search","tax","sampledata"} ; do
     helm dependency build base/microservices/"$chart"
     helm upgrade --install "$chart" base/microservices/"$chart" \
-    --namespace yas --create-namespace \
-    --set backend.ingress.host="api.$DOMAIN"
+    --namespace "$NAMESPACE" --create-namespace \
+    --set global.environment="$ENVIRONMENT" \
+    --set backend.ingress.host="$API_HOST"
     sleep 60
 done
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/deploy-yas-applications.sh =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/deploy-yas-configuration.sh =====
@@ -332,10 +294,24 @@ set -x
 helm repo add stakater https://stakater.github.io/stakater-charts
 helm repo update
 
+DOMAIN="${DOMAIN:-$(yq -r '.domain' ./base/infrastructure/cluster-config.yaml)}"
+NAMESPACE="${NAMESPACE:-yas-dev}"
+API_HOST="${API_HOST:-api.$DOMAIN}"
+IDENTITY_HOST="${IDENTITY_HOST:-identity.$DOMAIN}"
+BACKOFFICE_HOST="${BACKOFFICE_HOST:-backoffice.$DOMAIN}"
+STOREFRONT_HOST="${STOREFRONT_HOST:-storefront.$DOMAIN}"
+
 helm dependency build base/microservices/yas-configuration
 helm upgrade --install yas-configuration base/microservices/yas-configuration \
---namespace yas --create-namespace
-
+--namespace "$NAMESPACE" --create-namespace \
+--set global.domain="$DOMAIN" \
+--set global.apiHost="$API_HOST" \
+--set global.apiUrl="https://$API_HOST" \
+--set global.identityHost="$IDENTITY_HOST" \
+--set global.identityUrl="https://$IDENTITY_HOST" \
+--set global.backofficeHost="$BACKOFFICE_HOST" \
+--set global.storefrontHost="$STOREFRONT_HOST" \
+--set global.storefrontUrl="http://$STOREFRONT_HOST"
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/deploy-yas-configuration.sh =====
 
@@ -970,7 +946,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: {{ .Values.hostname }}
+  - host: {{ tpl .Values.hostname . | quote }}
     http:
       paths:
       - path: /
@@ -980,6 +956,7 @@ spec:
             name: keycloak-service
             port:
               number: 80
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/keycloak/keycloak/templates/ingress.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/keycloak/keycloak/templates/keycloak-credential.secret.yaml =====
@@ -1522,19 +1499,9 @@ spec:
         clientAuthenticatorType: client-secret
         secret: TVacLC0cQ8tiiEKiTVerTb2YvwQ1TRJF
         redirectUris:
-          # - "{{ .Values.backofficeRedirectUrl }}/*"
-            - "http://localhost:3000/*"
-            - "http://localhost:8087/*"
-            - "http://backoffice.yasdevops.dev"
-            - "https://backoffice.yasdevops.dev"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/keycloak"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/keycloak"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/api-client"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/api-client"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/api-client/*"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/api-client/*"
+{{ range .Values.backofficeRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
         webOrigins: [ ]
         notBefore: 0
         bearerOnly: false
@@ -1826,19 +1793,9 @@ spec:
         clientAuthenticatorType: client-secret
         secret: ZrU9I0q2uXBglBnmvyJdkl1lf0ncr8tn
         redirectUris:
-          # - "{{ .Values.storefrontRedirectUrl }}/*"
-            - "http://localhost:3000/*"
-            - "http://localhost:8087/*"
-            - "http://storefront.yasdevops.dev"
-            - "https://storefront.yasdevops.dev"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/keycloak"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/keycloak"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/api-client"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/api-client"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/api-client/*"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/api-client/*"
+{{ range .Values.storefrontRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
         webOrigins: [ ]
         notBefore: 0
         bearerOnly: false
@@ -1950,7 +1907,9 @@ spec:
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
         redirectUris:
-          - http://api.yasdevops.dev/swagger-ui/*
+{{ range .Values.swaggerRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
           - http://localhost:8080/*
           - http://localhost:8081/*
           - http://localhost:8083/*
@@ -1964,7 +1923,9 @@ spec:
           - http://localhost:8092/*
           - http://localhost:8093/*
         webOrigins:
-          - http://api.yasdevops.dev
+{{ range .Values.swaggerWebOrigins }}
+          - {{ tpl . $ | quote }}
+{{ end }}
           - http://localhost:8080
           - http://localhost:8081
           - http://localhost:8083
@@ -3096,7 +3057,7 @@ spec:
     httpEnabled: true
     httpPort: 80
   hostname:
-    hostname: https://{{ .Values.hostname }}
+    hostname: {{ printf "https://%s" (tpl .Values.hostname .) | quote }}
     backchannelDynamic: false
     strict: false
   proxy:
@@ -3140,9 +3101,46 @@ binaryData:
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/keycloak/keycloak/templates/yas-themes.configmap.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/keycloak/keycloak/values.yaml =====
-hostname: identity.yasdevops.dev   
-backofficeRedirectUrl: https://backoffice.yasdevops.dev
-storefrontRedirectUrl: https://storefront.yasdevops.dev
+global:
+  domain: yasdevops.dev
+  apiHost: api.yasdevops.dev
+  identityHost: identity.yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+
+hostname: "{{ .Values.global.identityHost }}"
+backofficeRedirectUrl: "https://{{ .Values.global.backofficeHost }}"
+storefrontRedirectUrl: "https://{{ .Values.global.storefrontHost }}"
+backofficeRedirectUris:
+  - http://localhost:3000/*
+  - http://localhost:8087/*
+  - http://{{ .Values.global.backofficeHost }}
+  - https://{{ .Values.global.backofficeHost }}
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak/*
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak/*
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client/*
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client/*
+storefrontRedirectUris:
+  - http://localhost:3000/*
+  - http://localhost:8087/*
+  - http://{{ .Values.global.storefrontHost }}
+  - https://{{ .Values.global.storefrontHost }}
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak/*
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak/*
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client/*
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client/*
+swaggerRedirectUris:
+  - http://{{ .Values.global.apiHost }}/swagger-ui/*
+swaggerWebOrigins:
+  - http://{{ .Values.global.apiHost }}
 ingress:
   enabled: true
   className: nginx
@@ -3154,6 +3152,7 @@ postgresql:
 bootstrapAdmin:
   username: admin
   password: admin
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/keycloak/keycloak/values.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/infrastructure/observability/grafana/.helmignore =====
@@ -5231,10 +5230,6 @@ spec:
       labels:
         {{- include "backend.selectorLabels" . | nindent 8 }}
     spec:
-      hostAliases:
-        - ip: "10.0.2.112"  # IP Node K8s của bạn
-          hostnames:
-            - "identity.yasdevops.dev"
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -5274,7 +5269,7 @@ spec:
               value: /opt/yas/config/application.yaml
             {{- end }}
             {{- with .Values.extraEnvs }}
-              {{- toYaml . | nindent 12 }}
+              {{- tpl (toYaml .) $ | nindent 12 }}
             {{- end }}
           volumeMounts:
             - mountPath: /opt/yas/config
@@ -5309,6 +5304,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backend/templates/deployment.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backend/templates/extra-manifests.yaml =====
@@ -5362,6 +5358,7 @@ spec:
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "backend.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $root := . -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -5391,16 +5388,16 @@ spec:
   tls:
     {{- with .Values.ingress.tls }}
     - hosts:
-        - {{ .host | quote }}
+        - {{ tpl .host $root | quote }}
       secretName: {{ .secretName }}
     {{- end }}
   {{- end }}
   rules:
     {{- with .Values.ingress }}
-    - host: {{ .host}}
+    - host: {{ tpl .host $root | quote }}
       http:
         paths:
-          - path: {{ .path }}
+          - path: {{ .path | quote }}
             pathType: {{ .pathType }}
             backend:
               service:
@@ -5758,6 +5755,11 @@ Create the name of the service account to use
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-bff/templates/_helpers.tpl =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-bff/values.yaml =====
+global:
+  environment: dev
+  domain: yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-backoffice-bff
@@ -5770,11 +5772,11 @@ backend:
       configmap.reloader.stakater.com/reload: "yas-gateway-routes-config-configmap,backoffice-bff-extra-configmap"
   ingress:
     enabled: true
-    host: backoffice.yasdevops.dev
+    host: "{{ .Values.global.backofficeHost }}"
     path: /
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: prod
+      value: "{{ .Values.global.environment }}"
     - name: UI_HOST
       value: http://backoffice-ui:3000
   extraEnvFroms:
@@ -5798,6 +5800,7 @@ backend:
     - /opt/yas/gateway-routes-config/gateway-routes-config.yaml
     - /opt/yas/extra-config/backoffice-bff-extra-config.yaml
   
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-bff/values.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-ui/.helmignore =====
@@ -5826,6 +5829,16 @@ backend:
 .vscode/
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-ui/.helmignore =====
+
+===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-ui/Chart.lock =====
+dependencies:
+- name: ui
+  repository: file://../ui
+  version: 0.1.0
+digest: sha256:7f57407d7928a64c6a9b01ec4fa9c7756de6b79601283f4097543c7d6cbca2d4
+generated: "2026-05-24T23:58:28.730544254Z"
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-ui/Chart.lock =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/backoffice-ui/Chart.yaml =====
 apiVersion: v2
@@ -7999,6 +8012,9 @@ Create the name of the service account to use
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/search/templates/_helpers.tpl =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/search/values.yaml =====
+global:
+  environment: dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-search
@@ -8011,7 +8027,7 @@ backend:
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: "prod"
+      value: "{{ .Values.global.environment }}"
 
   # SỬA: Đổi tên secret trùng khớp với hạ tầng elasticsearch tạo ra
   extraEnvFroms:
@@ -8178,6 +8194,11 @@ data:
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-bff/templates/storefront-bff.configmap.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-bff/values.yaml =====
+global:
+  environment: dev
+  domain: yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-storefront-bff
@@ -8192,12 +8213,12 @@ backend:
 
   ingress:
     enabled: true
-    host: storefront.yasdevops.dev
+    host: "{{ .Values.global.storefrontHost }}"
     path: /
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: prod
+      value: "{{ .Values.global.environment }}"
     - name: UI_HOST
       value: http://storefront-ui:3000
   extraEnvFroms:
@@ -8221,6 +8242,7 @@ backend:
     - /opt/yas/gateway-routes-config/gateway-routes-config.yaml
     - /opt/yas/extra-config/storefront-bff-extra-config.yaml
   
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-bff/values.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/.helmignore =====
@@ -8249,6 +8271,16 @@ backend:
 .vscode/
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/.helmignore =====
+
+===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/Chart.lock =====
+dependencies:
+- name: ui
+  repository: file://../ui
+  version: 0.1.0
+digest: sha256:7f57407d7928a64c6a9b01ec4fa9c7756de6b79601283f4097543c7d6cbca2d4
+generated: "2026-05-24T23:58:28.725015745Z"
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/Chart.lock =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/Chart.yaml =====
 apiVersion: v2
@@ -8363,6 +8395,10 @@ data:
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/templates/storefront-env-production.configmap.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/values.yaml =====
+global:
+  domain: yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+
 ui:
   image:
     repository: ghcr.io/nashtech-garage/yas-storefront
@@ -8383,12 +8419,13 @@ ui:
 #      subPath: .env.production
   extraEnvs:
     - name: API_BASE_PATH
-      value: http://storefront.yasdevops.dev/api
+      value: "http://{{ .Values.global.storefrontHost }}/api"
   ingress:
     enabled: false
 
 #storefrontEnvProduction: |
-#  API_BASE_PATH=http://storefront.yasdevops.dev/api
+#  API_BASE_PATH=http://{{ .Values.global.storefrontHost }}/api
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/storefront-ui/values.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/swagger-ui/.helmignore =====
@@ -8576,9 +8613,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: BASE_URL
-              value: {{ .Values.baseUrl }}
+              value: {{ .Values.baseUrl | quote }}
             - name: URLS
-              value: {{ .Values.urls | quote }}
+              value: {{ tpl .Values.urls . | quote }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -8648,6 +8685,7 @@ spec:
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "swagger-ui.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $root := . -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -8678,14 +8716,14 @@ spec:
     {{- range .Values.ingress.tls }}
     - hosts:
         {{- range .hosts }}
-        - {{ . | quote }}
+        - {{ tpl . $root | quote }}
         {{- end }}
       secretName: {{ .secretName }}
     {{- end }}
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
-    - host: {{ $.Values.ingress.host | quote }}
+    - host: {{ tpl $.Values.ingress.host $root | quote }}
       http:
         paths:
           {{- range .paths }}
@@ -8764,6 +8802,11 @@ spec:
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/swagger-ui/templates/tests/test-connection.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/swagger-ui/values.yaml =====
+global:
+  domain: yasdevops.dev
+  apiHost: api.yasdevops.dev
+  apiUrl: https://api.yasdevops.dev
+
 # Default values for swagger-ui.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -8803,18 +8846,18 @@ securityContext: {}
   # runAsUser: 1000
 
 baseUrl: /swagger-ui
-urls: "[{ url: 'https://api.yasdevops.dev/product/v3/api-docs', name: 'Product' },
-      { url: 'https://api.yasdevops.dev/customer/v3/api-docs', name: 'Customer' }, 
-      { url: 'https://api.yasdevops.dev/cart/v3/api-docs', name: 'Cart'},
-      { url: 'https://api.yasdevops.dev/media/v3/api-docs', name: 'Media' },
-      { url: 'https://api.yasdevops.dev/rating/v3/api-docs', name: 'Rating' }, 
-      { url: 'https://api.yasdevops.dev/order/v3/api-docs', name: 'Order'},
-      { url: 'https://api.yasdevops.dev/payment/v3/api-docs', name: 'Payment'},
-      { url: 'https://api.yasdevops.dev/location/v3/api-docs', name: 'Location'}, 
-      { url: 'https://api.yasdevops.dev/inventory/v3/api-docs', name: 'Inventory'},
-      { url: 'https://api.yasdevops.dev/tax/v3/api-docs', name: 'Tax' },
-      { url: 'https://api.yasdevops.dev/promotion/v3/api-docs', name: 'Promotion'},
-      { url: 'https://api.yasdevops.dev/search/v3/api-docs', name: 'Search'}]"
+urls: "[{ url: '{{ .Values.global.apiUrl }}/product/v3/api-docs', name: 'Product' },
+      { url: '{{ .Values.global.apiUrl }}/customer/v3/api-docs', name: 'Customer' },
+      { url: '{{ .Values.global.apiUrl }}/cart/v3/api-docs', name: 'Cart'},
+      { url: '{{ .Values.global.apiUrl }}/media/v3/api-docs', name: 'Media' },
+      { url: '{{ .Values.global.apiUrl }}/rating/v3/api-docs', name: 'Rating' },
+      { url: '{{ .Values.global.apiUrl }}/order/v3/api-docs', name: 'Order'},
+      { url: '{{ .Values.global.apiUrl }}/payment/v3/api-docs', name: 'Payment'},
+      { url: '{{ .Values.global.apiUrl }}/location/v3/api-docs', name: 'Location'},
+      { url: '{{ .Values.global.apiUrl }}/inventory/v3/api-docs', name: 'Inventory'},
+      { url: '{{ .Values.global.apiUrl }}/tax/v3/api-docs', name: 'Tax' },
+      { url: '{{ .Values.global.apiUrl }}/promotion/v3/api-docs', name: 'Promotion'},
+      { url: '{{ .Values.global.apiUrl }}/search/v3/api-docs', name: 'Search'}]"
 
 service:
   type: ClusterIP
@@ -8823,12 +8866,12 @@ service:
 ingress:
   enabled: true
   className: "nginx"
-  host: api.yasdevops.dev
+  host: "{{ .Values.global.apiHost }}"
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: api.yasdevops.dev
+    - host: "{{ .Values.global.apiHost }}"
       paths:
         - path: /swagger-ui
           pathType: ImplementationSpecific
@@ -9198,7 +9241,7 @@ spec:
         - name: {{ include "ui.fullname" . }}
           {{- if .Values.extraEnvs }}
           env:
-            {{- toYaml .Values.extraEnvs | nindent 12 }}
+            {{- tpl (toYaml .Values.extraEnvs) . | nindent 12 }}
           {{- end }}
           {{- if .Values.extraVolumeMounts }}
           volumeMounts:
@@ -9277,6 +9320,7 @@ spec:
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "ui.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $root := . -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -9306,16 +9350,16 @@ spec:
   tls:
     {{- with .Values.ingress.tls }}
     - hosts:
-        - {{ .host | quote }}
+        - {{ tpl .host $root | quote }}
       secretName: {{ .secretName }}
     {{- end }}
   {{- end }}
   rules:
     {{- with .Values.ingress }}
-    - host: {{ .host}}
+    - host: {{ tpl .host $root | quote }}
       http:
         paths:
-          - path: {{ .path }}
+          - path: {{ .path | quote }}
             pathType: {{ .pathType }}
             backend:
               service:
@@ -9456,6 +9500,9 @@ affinity: {}
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/ui/values.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/values.template.yaml =====
+global:
+  apiHost: api.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-{{service}}
@@ -9467,8 +9514,9 @@ backend:
 
   ingress:
     enabled: true
-    host: api.yasdevops.dev
+    host: "{{ .Values.global.apiHost }}"
     path: /{{service}}
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/values.template.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/webhook/.helmignore =====
@@ -9692,9 +9740,9 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   application.yaml: |
-    {{- toYaml .Values.applicationConfig | nindent 4 }}
+    {{- tpl (toYaml .Values.applicationConfig) . | nindent 4 }}
   logback.xml: |
-    {{- .Values.logbackConfig | nindent 4 }}
+    {{- tpl .Values.logbackConfig . | nindent 4 }}
 ---
 #Configmap of gateway routes config for bff microservices
 apiVersion: v1
@@ -9705,7 +9753,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   gateway-routes-config.yaml: |
-    {{- toYaml .Values.gatewayRoutesConfig | nindent 4 }}
+    {{- tpl (toYaml .Values.gatewayRoutesConfig) . | nindent 4 }}
 ---
 #Configmap for backoffice-bff extra
 apiVersion: v1
@@ -9716,7 +9764,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   backoffice-bff-extra-config.yaml: |
-    {{- toYaml .Values.backofficeBffExtraConfig | nindent 4 }}
+    {{- tpl (toYaml .Values.backofficeBffExtraConfig) . | nindent 4 }}
 ---
 #Configmap for storefront-bff extra
 apiVersion: v1
@@ -9727,7 +9775,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   storefront-bff-extra-config.yaml: |
-    {{- toYaml .Values.storefrontBffExtraConfig | nindent 4 }}
+    {{- tpl (toYaml .Values.storefrontBffExtraConfig) . | nindent 4 }}
 ---
 # Configmap for media application config custom
 apiVersion: v1
@@ -9738,7 +9786,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   media-application.yaml: |
-    {{- toYaml .Values.mediaApplicationConfig | nindent 4 }}
+    {{- tpl (toYaml .Values.mediaApplicationConfig) . | nindent 4 }}
 ---
 #Configmap for customer application config custom
 apiVersion: v1
@@ -9749,7 +9797,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   customer-application.yaml: |
-    {{ toYaml .Values.customerApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.customerApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of search application config custom
 apiVersion: v1
@@ -9760,7 +9808,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   search-application.yaml: |
-    {{ toYaml .Values.searchApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.searchApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of cart application config custom
 apiVersion: v1
@@ -9771,7 +9819,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   cart-application.yaml: |
-    {{ toYaml .Values.cartApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.cartApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of order application config custom
 apiVersion: v1
@@ -9782,7 +9830,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   order-application.yaml: |
-    {{ toYaml .Values.orderApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.orderApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of payment application config custom
 apiVersion: v1
@@ -9793,7 +9841,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   payment-application.yaml: |
-    {{ toYaml .Values.paymentApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.paymentApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of payment-paypal application config custom
 apiVersion: v1
@@ -9804,7 +9852,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   payment-paypal-application.yaml: |
-    {{ toYaml .Values.paymentPaypalApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.paymentPaypalApplicationConfig) . | nindent 4 }}
 ---
 # Configmap of production application config custom
 apiVersion: v1
@@ -9815,7 +9863,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   product-application.yaml: |
-    {{ toYaml .Values.productApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.productApplicationConfig) . | nindent 4 }}
 
 ---
 # Configmap of recommendation application config custom
@@ -9827,7 +9875,7 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   recommendation-application.yaml: |
-    {{ toYaml .Values.recommendationApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.recommendationApplicationConfig) . | nindent 4 }}
 
 ---
 # Configmap of sampledata application config custom
@@ -9839,7 +9887,8 @@ metadata:
     reloader.stakater.com/match: "true"
 data:
   sampledata-application.yaml: |
-    {{ toYaml .Values.sampledataApplicationConfig | nindent 4 }}
+    {{ tpl (toYaml .Values.sampledataApplicationConfig) . | nindent 4 }}
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/yas-configuration/templates/yas-configurations.configmap.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/yas-configuration/templates/yas-credentials.secret.yaml =====
@@ -9903,6 +9952,16 @@ data:
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/yas-configuration/templates/yas-credentials.secret.yaml =====
 
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/yas-configuration/values.yaml =====
+global:
+  domain: yasdevops.dev
+  apiHost: api.yasdevops.dev
+  identityHost: identity.yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+  identityUrl: https://identity.yasdevops.dev
+  apiUrl: https://api.yasdevops.dev
+  storefrontUrl: http://storefront.yasdevops.dev
+
 credentials:
   postgresql:
     username: yasadminuser
@@ -9963,7 +10022,7 @@ applicationConfig:
       oauth2:
         resourceserver:
           jwt:
-            issuer-uri: https://identity.yasdevops.dev/realms/Yas
+            issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
 
     cloud:
       gateway:
@@ -10084,8 +10143,8 @@ applicationConfig:
 
   springdoc:
     oauthflow:
-      authorization-url: https://identity.yasdevops.dev/realms/Yas/protocol/openid-connect/auth
-      token-url: https://identity.yasdevops.dev/realms/Yas/protocol/openid-connect/token
+      authorization-url: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
+      token-url: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
 
   yas:
     services:
@@ -10230,7 +10289,7 @@ backofficeBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: https://identity.yasdevops.dev/realms/Yas
+              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
           registration:
             api-client:
               provider: keycloak
@@ -10250,7 +10309,7 @@ storefrontBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: https://identity.yasdevops.dev/realms/Yas
+              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
           registration:
             api-client:
               provider: keycloak
@@ -10264,12 +10323,12 @@ mediaApplicationConfig:
     servlet:
       context-path: /media
   yas:
-    publicUrl: http://api.yasdevops.dev/media
+    publicUrl: "{{ .Values.global.apiUrl }}/media"
 
 # Customer application config custom
 customerApplicationConfig:
   keycloak:
-    auth-server-url: https://identity.yasdevops.dev
+    auth-server-url: "{{ .Values.global.identityUrl }}"
     realm: Yas
     resource: customer-management
     credentials:
@@ -10286,7 +10345,7 @@ searchApplicationConfig:
 paymentPaypalApplicationConfig:
   yas:
     public:
-      url: http://storefront.yasdevops.dev/complete-payment
+      url: "{{ .Values.global.storefrontUrl }}/complete-payment"
 
 # Recommendation application config custom
 recommendationApplicationConfig:
@@ -10327,17 +10386,108 @@ reloader:
   fullnameOverride: "yas-reloader"
   reloader:
     watchGlobally: false
+
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/base/microservices/yas-configuration/values.yaml =====
 
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/helm-values.yaml =====
+global:
+  environment: dev
+  domain: yasdevops.dev
+  apiHost: api-dev.yasdevops.dev
+  apiUrl: https://api-dev.yasdevops.dev
+  identityHost: identity-dev.yasdevops.dev
+  identityUrl: https://identity-dev.yasdevops.dev
+  backofficeHost: backoffice-dev.yasdevops.dev
+  storefrontHost: storefront-dev.yasdevops.dev
+  storefrontUrl: http://storefront-dev.yasdevops.dev
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/helm-values.yaml =====
+
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/kustomization.yaml =====
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/kustomization.yaml =====
 
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/namespace.yaml =====
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yas-dev
+  labels:
+    app.kubernetes.io/part-of: yas
+    environment: dev
+    istio.io/dataplane-mode: ambient
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/dev/namespace.yaml =====
+
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/kustomization.yaml =====
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/kustomization.yaml =====
+
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/namespace.yaml =====
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yas-preview-CHANGE_ID
+  labels:
+    app.kubernetes.io/part-of: yas
+    environment: preview
+    istio.io/dataplane-mode: ambient
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/namespace.yaml =====
+
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/preview-patch.yaml =====
+global:
+  environment: preview
+  domain: yasdevops.dev
+  apiHost: api-pr-CHANGE_ID.yasdevops.dev
+  apiUrl: https://api-pr-CHANGE_ID.yasdevops.dev
+  identityHost: identity-pr-CHANGE_ID.yasdevops.dev
+  identityUrl: https://identity-pr-CHANGE_ID.yasdevops.dev
+  backofficeHost: backoffice-pr-CHANGE_ID.yasdevops.dev
+  storefrontHost: storefront-pr-CHANGE_ID.yasdevops.dev
+  storefrontUrl: http://storefront-pr-CHANGE_ID.yasdevops.dev
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/ephemeral/preview-patch.yaml =====
 
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/helm-values.yaml =====
+global:
+  environment: stage
+  domain: yasdevops.dev
+  apiHost: api-stage.yasdevops.dev
+  apiUrl: https://api-stage.yasdevops.dev
+  identityHost: identity-stage.yasdevops.dev
+  identityUrl: https://identity-stage.yasdevops.dev
+  backofficeHost: backoffice-stage.yasdevops.dev
+  storefrontHost: storefront-stage.yasdevops.dev
+  storefrontUrl: http://storefront-stage.yasdevops.dev
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/helm-values.yaml =====
+
 ===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/kustomization.yaml =====
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
 
 ===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/kustomization.yaml =====
+
+===== FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/namespace.yaml =====
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yas-stage
+  labels:
+    app.kubernetes.io/part-of: yas
+    environment: stage
+    istio.io/dataplane-mode: ambient
+
+===== END FILE: /home/pnt/study/devops/project/yas-gitops/overlays/stage/namespace.yaml =====
 
