@@ -1,14 +1,14 @@
 global:
   environment: dev
   domain: yasdevops.dev
-  apiHost: api-dev.yasdevops.dev
-  apiUrl: https://api-dev.yasdevops.dev
-  identityHost: identity-dev.yasdevops.dev
+  apiHost: api.local.test
+  apiUrl: http://api.local.test
+  identityHost: identity.local.test
   identityScheme: http
-  identityUrl: http://identity-dev.yasdevops.dev
-  backofficeHost: backoffice-dev.yasdevops.dev
-  storefrontHost: storefront-dev.yasdevops.dev
-  storefrontUrl: http://storefront-dev.yasdevops.dev
+  identityUrl: http://identity.local.test
+  backofficeHost: backoffice.local.test
+  storefrontHost: storefront.local.test
+  storefrontUrl: http://storefront.local.test
 backend:
   image:
     tag: ""

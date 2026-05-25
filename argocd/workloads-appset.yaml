@@ -223,11 +223,12 @@ spec:
                   project: yas-dev
                   namespace: yas-dev
                   domain: dev.yasdevops.dev
-                  apiHost: api-dev.yasdevops.dev
-                  identityHost: identity-dev.yasdevops.dev
+                  apiHost: api.local.test
+                  identityHost: identity.local.test
                   identityScheme: http
-                  backofficeHost: backoffice-dev.yasdevops.dev
-                  storefrontHost: storefront-dev.yasdevops.dev
+                  backofficeHost: backoffice.local.test
+                  storefrontHost: storefront.local.test
+                  kibanaHost: kibana.local.test
                 - env: stage
                   project: yas-stage
                   namespace: yas-stage
@@ -237,6 +238,7 @@ spec:
                   identityScheme: http
                   backofficeHost: backoffice-stage.yasdevops.dev
                   storefrontHost: storefront-stage.yasdevops.dev
+                  kibanaHost: kibana-stage.yasdevops.dev
           - list:
               elements:
                 - name: postgres
@@ -290,7 +292,7 @@ spec:
             - name: storefrontRedirectUrl
               value: "https://{{.storefrontHost}}"
             - name: kibana.ingress.hostname
-              value: "kibana-{{.env}}.yasdevops.dev"
+              value: "{{.kibanaHost}}"
             - name: pgadmin.existingSecret
               value: pgadmin-password
             - name: pgadmin.createSecret
@@ -338,7 +340,7 @@ spec:
                 - env: dev
                   project: yas-dev
                   namespace: yas-dev
-                  apiHost: api-dev.yasdevops.dev
+                  apiHost: api.local.test
                   valuesFile: ../../../overlays/dev/helm-values.yaml
                 - env: stage
                   project: yas-stage

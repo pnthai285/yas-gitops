@@ -5,4 +5,6 @@ ui:
   nameOverride: backoffice-ui
   fullnameOverride: backoffice-ui
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.backofficeHost }}"
+    path: /

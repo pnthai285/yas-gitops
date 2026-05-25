@@ -24,7 +24,9 @@ ui:
     - name: API_BASE_PATH
       value: "http://{{ .Values.global.storefrontHost }}/api"
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.storefrontHost }}"
+    path: /
 
 #storefrontEnvProduction: |
 #  API_BASE_PATH=http://{{ .Values.global.storefrontHost }}/api

@@ -16,7 +16,7 @@ backend:
   ingress:
     enabled: true
     host: "{{ .Values.global.backofficeHost }}"
-    path: /
+    path: /api
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
       value: "{{ .Values.global.environment }}"
