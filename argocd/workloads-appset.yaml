@@ -409,10 +409,6 @@ spec:
           parameters:
             - name: backend.databaseConnectionUrl
               value: "jdbc:postgresql://postgresql:5432"
-            - name: backend.ingress.host
-              value: "{{.apiHost}}"
-            - name: ingress.host
-              value: "{{.apiHost}}"
             - name: backend.serviceMonitor.enabled
               value: "true"
             - name: applicationConfig.kafka.bootstrap-servers
