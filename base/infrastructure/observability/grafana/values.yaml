@@ -6,7 +6,7 @@ grafana:
   # Password must be provided via SealedSecret named: grafana-admin-credentials
   password: ""
 postgresql:
-  url: postgresql.postgres:5432
+  url: postgresql:5432
   username: yasadminuser
   # Password must be provided via SealedSecret or operator-managed Postgres user secret
   password: ""

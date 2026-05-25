@@ -5,3 +5,31 @@ resources:
   - namespace.yaml
   - ../../sealed-secrets/dev
   - ../../argocd/hooks
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+      name: yas-dev
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          argocd.argoproj.io/sync-wave: "-2"
+  - target:
+      group: bitnami.com
+      version: v1alpha1
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          argocd.argoproj.io/sync-wave: "-1"
+  - target:
+      group: batch
+      version: v1
+      kind: Job
+      name: update-keycloak-client-secrets
+    patch: |-
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1sync-wave
+        value: "2"

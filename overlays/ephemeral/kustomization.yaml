@@ -1,7 +1,35 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: yas-preview-CHANGE_ID
+namespace: "yas-preview-{{pr.number}}"
 resources:
   - namespace.yaml
   - ../../sealed-secrets/ephemeral-shared
   - ../../argocd/hooks
+patches:
+  - target:
+      version: v1
+      kind: Namespace
+      name: yas-preview-{{pr.number}}
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          argocd.argoproj.io/sync-wave: "-2"
+  - target:
+      group: bitnami.com
+      version: v1alpha1
+      kind: SealedSecret
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          argocd.argoproj.io/sync-wave: "-1"
+  - target:
+      group: batch
+      version: v1
+      kind: Job
+      name: update-keycloak-client-secrets
+    patch: |-
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1sync-wave
+        value: "2"

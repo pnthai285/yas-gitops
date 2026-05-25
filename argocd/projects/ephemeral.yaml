@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: yas-ephemeral
+  namespace: argocd
+spec:
+  description: YAS ephemeral preview GitOps project
+  sourceRepos:
+    - https://github.com/pnthai285/yas-gitops.git
+    - https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+    - https://strimzi.io/charts/
+    - https://akhq.io/
+    - https://helm.elastic.co
+    - https://grafana.github.io/helm-charts
+    - https://prometheus-community.github.io/helm-charts
+    - https://open-telemetry.github.io/opentelemetry-helm-charts
+    - https://charts.jetstack.io
+    - https://charts.bitnami.com/bitnami
+    - https://github.com/keycloak/keycloak-k8s-resources.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: yas-preview-*
+    - server: https://kubernetes.default.svc
+      namespace: keycloak
+    - server: https://kubernetes.default.svc
+      namespace: postgres
+    - server: https://kubernetes.default.svc
+      namespace: kafka
+    - server: https://kubernetes.default.svc
+      namespace: observability
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  orphanedResources:
+    warn: true

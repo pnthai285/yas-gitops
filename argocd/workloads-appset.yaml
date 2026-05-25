@@ -1,0 +1,441 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-platform-workloads
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - name: postgres-operator
+            namespace: postgres-operator
+            repoURL: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
+            chart: postgres-operator
+            targetRevision: 1.15.1
+            values: |
+              configKubernetes:
+                watched_namespace: '*'
+          - name: ingress-nginx
+            namespace: ingress-nginx
+            repoURL: https://kubernetes.github.io/ingress-nginx
+            chart: ingress-nginx
+            targetRevision: 4.15.1
+            values: |
+              controller:
+                allowSnippetAnnotations: true
+                config:
+                  annotations-risk-level: Critical
+                admissionWebhooks:
+                  enabled: true
+                service:
+                  type: ClusterIP
+          - name: kafka-operator
+            namespace: kafka-operator
+            repoURL: https://strimzi.io/charts/
+            chart: strimzi-kafka-operator
+            targetRevision: 0.48.0
+            values: |
+              watchAnyNamespace: true
+          - name: elastic-operator
+            namespace: elastic-system
+            repoURL: https://helm.elastic.co
+            chart: eck-operator
+            targetRevision: 3.4.0
+            values: |
+              managedNamespaces: []
+          - name: cert-manager
+            namespace: cert-manager
+            repoURL: https://charts.jetstack.io
+            chart: cert-manager
+            targetRevision: v1.12.0
+            values: |
+              installCRDs: true
+              prometheus:
+                enabled: false
+              webhook:
+                timeoutSeconds: 4
+              admissionWebhooks:
+                certManager:
+                  create: true
+          - name: opentelemetry-operator
+            namespace: observability
+            repoURL: https://open-telemetry.github.io/opentelemetry-helm-charts
+            chart: opentelemetry-operator
+            targetRevision: 0.113.1
+            values: |
+              admissionWebhooks:
+                certManager:
+                  enabled: true
+          - name: kube-prometheus-stack
+            namespace: observability
+            repoURL: https://prometheus-community.github.io/helm-charts
+            chart: kube-prometheus-stack
+            targetRevision: 85.3.0
+            values: |
+              grafana:
+                enabled: false
+  template:
+    metadata:
+      name: "platform-{{.name}}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "0"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: platform
+    spec:
+      project: yas-platform
+      source:
+        repoURL: "{{.repoURL}}"
+        chart: "{{.chart}}"
+        targetRevision: "{{.targetRevision}}"
+        helm:
+          releaseName: "{{.name}}"
+          values: "{{.values}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-keycloak-operator-workloads
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - env: dev
+            project: yas-dev
+            namespace: yas-dev
+          - env: stage
+            project: yas-stage
+            namespace: yas-stage
+  template:
+    metadata:
+      name: "{{.env}}-keycloak-operator"
+      annotations:
+        argocd.argoproj.io/sync-wave: "1"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://github.com/keycloak/keycloak-k8s-resources.git
+        targetRevision: 26.0.2
+        path: kubernetes
+        directory:
+          include: kubernetes.yml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-redis-workloads
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - env: dev
+            project: yas-dev
+            namespace: yas-dev
+          - env: stage
+            project: yas-stage
+            namespace: yas-stage
+  template:
+    metadata:
+      name: "{{.env}}-infra-redis"
+      annotations:
+        argocd.argoproj.io/sync-wave: "1"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://charts.bitnami.com/bitnami
+        chart: redis
+        targetRevision: 25.5.3
+        helm:
+          releaseName: redis
+          parameters:
+            - name: architecture
+              value: standalone
+            - name: auth.enabled
+              value: "true"
+            - name: auth.existingSecret
+              value: yas-redis-credentials-secret
+            - name: auth.existingSecretPasswordKey
+              value: REDIS_PASSWORD
+            - name: master.persistence.enabled
+              value: "false"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-infrastructure-workloads
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                  project: yas-dev
+                  namespace: yas-dev
+                  domain: dev.yasdevops.dev
+                  apiHost: api-dev.yasdevops.dev
+                  identityHost: identity-dev.yasdevops.dev
+                  backofficeHost: backoffice-dev.yasdevops.dev
+                  storefrontHost: storefront-dev.yasdevops.dev
+                - env: stage
+                  project: yas-stage
+                  namespace: yas-stage
+                  domain: stage.yasdevops.dev
+                  apiHost: api-stage.yasdevops.dev
+                  identityHost: identity-stage.yasdevops.dev
+                  backofficeHost: backoffice-stage.yasdevops.dev
+                  storefrontHost: storefront-stage.yasdevops.dev
+          - list:
+              elements:
+                - name: postgres
+                  path: base/infrastructure/postgres/postgresql
+                  wave: "1"
+                - name: kafka-cluster
+                  path: base/infrastructure/kafka/kafka-cluster
+                  wave: "2"
+                - name: elasticsearch-cluster
+                  path: base/infrastructure/elasticsearch/elasticsearch-cluster
+                  wave: "2"
+                - name: keycloak
+                  path: base/infrastructure/keycloak/keycloak
+                  wave: "2"
+                - name: pgadmin
+                  path: base/infrastructure/postgres/pgadmin
+                  wave: "3"
+                - name: grafana
+                  path: base/infrastructure/observability/grafana
+                  wave: "3"
+                - name: opentelemetry-collector
+                  path: base/infrastructure/observability/opentelemetry
+                  wave: "3"
+  template:
+    metadata:
+      name: "{{.env}}-infra-{{.name}}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{.wave}}"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://github.com/pnthai285/yas-gitops.git
+        targetRevision: feat/multienv-gitops-secret
+        path: "{{.path}}"
+        helm:
+          releaseName: "{{.name}}"
+          parameters:
+            - name: global.domain
+              value: "{{.domain}}"
+            - name: global.identityHost
+              value: "{{.identityHost}}"
+            - name: hostname
+              value: "{{.identityHost}}"
+            - name: backofficeRedirectUrl
+              value: "https://{{.backofficeHost}}"
+            - name: storefrontRedirectUrl
+              value: "https://{{.storefrontHost}}"
+            - name: kibana.ingress.hostname
+              value: "kibana-{{.env}}.yasdevops.dev"
+            - name: pgadmin.existingSecret
+              value: pgadmin-password
+            - name: pgadmin.createSecret
+              value: "false"
+            - name: grafana.existingSecret
+              value: grafana-admin-credentials
+            - name: grafana.createSecret
+              value: "false"
+            - name: postgresql.existingSecret
+              value: postgresql-credentials
+            - name: postgresql.host
+              value: postgresql
+            - name: postgresql.createSecret
+              value: "false"
+            - name: bootstrapAdmin.existingSecret
+              value: keycloak-credentials
+            - name: bootstrapAdmin.createSecret
+              value: "false"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+          - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-microservice-workloads
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: dev
+                  project: yas-dev
+                  namespace: yas-dev
+                  apiHost: api-dev.yasdevops.dev
+                  valuesFile: ../../../overlays/dev/helm-values.yaml
+                - env: stage
+                  project: yas-stage
+                  namespace: yas-stage
+                  apiHost: api-stage.yasdevops.dev
+                  valuesFile: ../../../overlays/stage/helm-values.yaml
+          - list:
+              elements:
+                - name: config
+                  chart: yas-configuration
+                  wave: "4"
+                - name: backoffice-bff
+                  chart: backoffice-bff
+                  wave: "5"
+                - name: backoffice-ui
+                  chart: backoffice-ui
+                  wave: "6"
+                - name: storefront-bff
+                  chart: storefront-bff
+                  wave: "5"
+                - name: storefront-ui
+                  chart: storefront-ui
+                  wave: "6"
+                - name: swagger-ui
+                  chart: swagger-ui
+                  wave: "6"
+                - name: cart
+                  chart: cart
+                  wave: "7"
+                - name: customer
+                  chart: customer
+                  wave: "7"
+                - name: inventory
+                  chart: inventory
+                  wave: "7"
+                - name: media
+                  chart: media
+                  wave: "7"
+                - name: order
+                  chart: order
+                  wave: "7"
+                - name: product
+                  chart: product
+                  wave: "7"
+                - name: search
+                  chart: search
+                  wave: "7"
+                - name: tax
+                  chart: tax
+                  wave: "7"
+                - name: sampledata
+                  chart: sampledata
+                  wave: "8"
+  template:
+    metadata:
+      name: "yas-{{.env}}-{{.name}}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{.wave}}"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://github.com/pnthai285/yas-gitops.git
+        targetRevision: feat/multienv-gitops-secret
+        path: "base/microservices/{{.chart}}"
+        helm:
+          releaseName: "{{.name}}"
+          valueFiles:
+            - "{{.valuesFile}}"
+          parameters:
+            - name: backend.databaseConnectionUrl
+              value: "jdbc:postgresql://postgresql:5432"
+            - name: backend.ingress.host
+              value: "{{.apiHost}}"
+            - name: ingress.host
+              value: "{{.apiHost}}"
+            - name: backend.serviceMonitor.enabled
+              value: "true"
+            - name: applicationConfig.kafka.bootstrap-servers
+              value: "kafka-cluster-kafka-brokers:9092"
+            - name: applicationConfig.kafka.consumer.bootstrap-servers
+              value: "kafka-cluster-kafka-brokers:9092"
+            - name: backofficeBffExtraConfig.spring.data.redis.host
+              value: "redis-master"
+            - name: storefrontBffExtraConfig.spring.data.redis.host
+              value: "redis-master"
+            - name: searchApplicationConfig.elasticsearch.url
+              value: "elasticsearch-es-http:9200"
+            - name: sampledataApplicationConfig.spring.datasource.product.url
+              value: "jdbc:postgresql://postgresql:5432/product"
+            - name: sampledataApplicationConfig.spring.datasource.media.url
+              value: "jdbc:postgresql://postgresql:5432/media"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true

@@ -10,16 +10,11 @@ global:
 
 secretManagement:
   refs:
-    postgresql:
-      name: yas-postgresql-credentials-secret
-    elasticsearch:
-      name: yas-elasticsearch-credentials-secret
-    keycloak:
-      name: yas-keycloak-credentials-secret
-    redis:
-      name: yas-redis-credentials-secret
-    openai:
-      name: yas-openai-api-key-secret
+    postgresql: yas-postgresql-credentials-secret
+    elasticsearch: yas-elasticsearch-credentials-secret
+    keycloak: yas-keycloak-credentials-secret
+    redis: yas-redis-credentials-secret
+    openai: yas-openai-api-key-secret
 
 #Genneral application.yaml for all microservice
 applicationConfig:
@@ -180,9 +175,9 @@ applicationConfig:
       username: ${POSTGRESQL_USERNAME}
       password: ${POSTGRESQL_PASSWORD}
     kafka:
-      bootstrap-servers: kafka-cluster-kafka-brokers.kafka:9092
+      bootstrap-servers: kafka-cluster-kafka-brokers:9092
       consumer:
-        bootstrap-servers: kafka-cluster-kafka-brokers.kafka:9092
+        bootstrap-servers: kafka-cluster-kafka-brokers:9092
 
   springdoc:
     oauthflow:
@@ -324,7 +319,7 @@ backofficeBffExtraConfig:
   spring:
     data:
       redis:
-        host: redis-master.redis
+        host: redis-master
         password: ${REDIS_PASSWORD}
         port: 6379
     security:
@@ -344,7 +339,7 @@ storefrontBffExtraConfig:
   spring:
     data:
       redis:
-        host: redis-master.redis
+        host: redis-master
         password: ${REDIS_PASSWORD}
         port: 6379
     security:
@@ -380,7 +375,7 @@ customerApplicationConfig:
 # Search application config custom
 searchApplicationConfig:
   elasticsearch:
-    url: elasticsearch-es-http.elasticsearch:9200
+    url: elasticsearch-es-http:9200
     username: ${ELASTICSEARCH_USERNAME}
     password: ${ELASTICSEARCH_PASSWORD}
 
@@ -406,9 +401,9 @@ sampledataApplicationConfig:
   spring:
     datasource:
       product:
-        url: jdbc:postgresql://postgresql.postgres:5432/product
+        url: jdbc:postgresql://postgresql:5432/product
       media:
-        url: jdbc:postgresql://postgresql.postgres:5432/media
+        url: jdbc:postgresql://postgresql:5432/media
 
 logbackConfig: |
   <?xml version="1.0" encoding="UTF-8" ?>

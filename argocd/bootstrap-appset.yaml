@@ -1,0 +1,92 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-environments
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - env: dev
+            appName: yas-dev
+            project: yas-dev
+            namespace: yas-dev
+            path: overlays/dev
+          - env: stage
+            appName: yas-stage
+            project: yas-stage
+            namespace: yas-stage
+            path: overlays/stage
+  template:
+    metadata:
+      name: "{{.appName}}"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://github.com/pnthai285/yas-gitops.git
+        targetRevision: feat/multienv-gitops-secret
+        path: "{{.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          jqPathExpressions:
+            - .data
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: yas-preview-environments
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - pullRequest:
+        github:
+          owner: pnthai285
+          repo: yas-gitops
+        requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: "yas-preview-{{.number}}"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: ephemeral
+    spec:
+      project: yas-ephemeral
+      source:
+        repoURL: https://github.com/pnthai285/yas-gitops.git
+        targetRevision: "{{.head_sha}}"
+        path: overlays/ephemeral
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "yas-preview-{{.number}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          jqPathExpressions:
+            - .data

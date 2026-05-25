@@ -6,6 +6,7 @@ zookeeper:
 postgresql:
   existingSecret: postgresql.credentials
   createSecret: false
+  host: postgresql
   username: ""
   # Password must be provided via SealedSecret named: postgresql.credentials
   password: ""

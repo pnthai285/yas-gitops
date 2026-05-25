@@ -43,6 +43,7 @@ ingress:
   className: nginx
 
 postgresql:
+  host: postgresql
   existingSecret: postgresql-credentials
   createSecret: false
   username: ""
