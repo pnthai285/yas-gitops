@@ -1,42 +1,114 @@
 # Cloudflare Tunnel notes
 
-This repo is prepared to expose YAS through a Cloudflare Tunnel without changing
-application charts.
+This repo runs `cloudflared` as an in-cluster connector. The Kubernetes
+deployment reads a tunnel token from a namespace-scoped SealedSecret, and
+Cloudflare public hostname routes are managed in the Cloudflare Zero Trust
+Dashboard.
 
-Recommended tunnel routing:
+Do not commit tunnel tokens, `credentials.json`, or plaintext token files.
 
-```yaml
-tunnel: <tunnel-id>
-credentials-file: /etc/cloudflared/creds/credentials.json
+## GitOps resources
 
-ingress:
-  - hostname: identity-dev.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: api-dev.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: backoffice-dev.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: storefront-dev.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: identity-stage.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: api-stage.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: backoffice-stage.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - hostname: storefront-stage.yasdevops.dev
-    service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
-  - service: http_status:404
+```text
+base/infrastructure/cloudflared/
+overlays/dev/cloudflared/
+overlays/stage/cloudflared/
+sealed-secrets/cloudflared/dev/
+sealed-secrets/cloudflared/stage/
 ```
 
-Before switching public traffic to Cloudflare HTTPS:
+The dev connector is enabled with 2 replicas.
 
-1. Set `global.identityScheme: https` and `global.identityUrl:
-   https://identity-<env>.yasdevops.dev` in the target overlay values.
-2. Set `identityScheme: https` in `argocd/workloads-appset.yaml` for the
-   target environment so Keycloak publishes the HTTPS issuer.
-3. Disable or remove `argocd/platform-coredns-custom.yaml` if pods should
-   resolve public hostnames through Cloudflare instead of the in-cluster
-   ingress-nginx service.
-4. Keep the ingress-nginx service as `ClusterIP`; `cloudflared` connects to it
-   from inside the cluster.
+The stage connector skeleton is present but currently scaled to 0 replicas until
+a separate stage tunnel token is sealed into
+`sealed-secrets/cloudflared/stage/cloudflared-token.yaml`.
+
+## Dashboard public hostname routes
+
+Create these routes in Cloudflare Zero Trust -> Networks -> Tunnels -> the
+target tunnel -> Public Hostnames.
+
+Use `HTTP` for the service type unless noted otherwise.
+
+### Dev tunnel
+
+| Public hostname | Service URL |
+| --- | --- |
+| `identity-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `api-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `backoffice-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `storefront-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `kibana-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `pgadmin-dev.yasdevops.dev` | `http://pgadmin.yas-dev.svc.cluster.local:80` |
+| `pgoperator-dev.yasdevops.dev` | `http://postgres-operator.postgres-operator.svc.cluster.local:8080` |
+
+### Stage tunnel
+
+| Public hostname | Service URL |
+| --- | --- |
+| `identity-stage.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `api-stage.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `backoffice-stage.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `storefront-stage.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `kibana-stage.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
+| `pgadmin-stage.yasdevops.dev` | `http://pgadmin.yas-stage.svc.cluster.local:80` |
+| `pgoperator-stage.yasdevops.dev` | `http://postgres-operator.postgres-operator.svc.cluster.local:8080` |
+
+The current cluster does not expose an `akhq` service or a Grafana service.
+Add their dashboard routes only after these services exist:
+
+```bash
+kubectl --kubeconfig ./.kube/k3s-config.yaml get svc -A | rg 'akhq|grafana'
+```
+
+Expected routes when those services are installed:
+
+| Public hostname | Service URL |
+| --- | --- |
+| `akhq-dev.yasdevops.dev` | `http://akhq.<namespace>.svc.cluster.local:8080` |
+| `akhq-stage.yasdevops.dev` | `http://akhq.<namespace>.svc.cluster.local:8080` |
+| `grafana-dev.yasdevops.dev` | `http://<grafana-service>.observability.svc.cluster.local:80` |
+| `grafana-stage.yasdevops.dev` | `http://<grafana-service>.observability.svc.cluster.local:80` |
+
+## Create dashboard routes
+
+For each public hostname:
+
+1. Open Cloudflare Dashboard.
+2. Go to Zero Trust -> Networks -> Tunnels.
+3. Select the tunnel for the environment.
+4. Open Public Hostnames.
+5. Add hostname, for example `backoffice-dev.yasdevops.dev`.
+6. Set service type to `HTTP`.
+7. Set the service URL from the table above.
+8. Save hostname.
+
+Cloudflare will create the DNS CNAME automatically when the zone is managed by
+Cloudflare. If it does not, add a proxied CNAME manually that points to the
+tunnel target shown in the Dashboard.
+
+## Validate
+
+```bash
+export KUBECONFIG=./.kube/k3s-config.yaml
+
+kubectl get pods -n cloudflared-dev
+kubectl logs -n cloudflared-dev -l app=cloudflared --tail=100
+
+curl -I https://identity-dev.yasdevops.dev
+curl -I https://api-dev.yasdevops.dev/swagger-ui
+curl -I https://backoffice-dev.yasdevops.dev
+curl -I https://storefront-dev.yasdevops.dev
+curl -I https://kibana-dev.yasdevops.dev
+```
+
+## Stage enablement
+
+When you have a separate stage tunnel token, generate and validate the stage
+SealedSecret, then change the stage cloudflared replica patch from 0 to 2:
+
+```bash
+export KUBECONFIG=./.kube/k3s-config.yaml
+scripts/generate-cloudflared-sealed-secret.sh stage
+kubeseal --validate < sealed-secrets/cloudflared/stage/cloudflared-token.yaml
+```

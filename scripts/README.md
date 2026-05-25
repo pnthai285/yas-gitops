@@ -56,6 +56,13 @@ GRAFANA_USERNAME=
 GRAFANA_PASSWORD=
 ```
 
+Cloudflare Tunnel tokens are generated separately because each environment must
+use a different tunnel token:
+
+```bash
+CLOUDFLARED_TUNNEL_TOKEN=
+```
+
 ## Generate SealedSecrets
 
 Development environment:
@@ -87,6 +94,31 @@ sealed-secrets/stage/
 sealed-secrets/ephemeral-shared/
 ```
 
+## Generate Cloudflare Tunnel SealedSecret
+
+Dev tunnel:
+
+```bash
+export KUBECONFIG=./.kube/k3s-config.yaml
+export CLOUDFLARED_TUNNEL_TOKEN='<dev tunnel token>'
+scripts/generate-cloudflared-sealed-secret.sh dev
+```
+
+Stage tunnel:
+
+```bash
+export KUBECONFIG=./.kube/k3s-config.yaml
+export CLOUDFLARED_TUNNEL_TOKEN='<stage tunnel token>'
+scripts/generate-cloudflared-sealed-secret.sh stage
+```
+
+The script writes:
+
+```text
+sealed-secrets/cloudflared/dev/cloudflared-token.yaml
+sealed-secrets/cloudflared/stage/cloudflared-token.yaml
+```
+
 ## Scope rules
 
 `dev` uses namespace-wide scope for namespace `yas-dev`.
@@ -104,6 +136,8 @@ find sealed-secrets/ -name "*.yaml" -not -name kustomization.yaml -exec kubeseal
 kubectl kustomize overlays/dev > /tmp/yas-dev.yaml
 kubectl kustomize overlays/stage > /tmp/yas-stage.yaml
 kubectl kustomize overlays/ephemeral > /tmp/yas-ephemeral.yaml
+kubectl kustomize overlays/dev/cloudflared > /tmp/yas-dev-cloudflared.yaml
+kubectl kustomize overlays/stage/cloudflared > /tmp/yas-stage-cloudflared.yaml
 ```
 
 If `kustomize` is installed separately, these are equivalent:

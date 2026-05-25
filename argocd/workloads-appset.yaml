@@ -223,19 +223,19 @@ spec:
                   project: yas-dev
                   namespace: yas-dev
                   domain: dev.yasdevops.dev
-                  apiHost: api.local.test
-                  identityHost: identity.local.test
-                  identityScheme: http
-                  backofficeHost: backoffice.local.test
-                  storefrontHost: storefront.local.test
-                  kibanaHost: kibana.local.test
+                  apiHost: api-dev.yasdevops.dev
+                  identityHost: identity-dev.yasdevops.dev
+                  identityScheme: https
+                  backofficeHost: backoffice-dev.yasdevops.dev
+                  storefrontHost: storefront-dev.yasdevops.dev
+                  kibanaHost: kibana-dev.yasdevops.dev
                 - env: stage
                   project: yas-stage
                   namespace: yas-stage
                   domain: stage.yasdevops.dev
                   apiHost: api-stage.yasdevops.dev
                   identityHost: identity-stage.yasdevops.dev
-                  identityScheme: http
+                  identityScheme: https
                   backofficeHost: backoffice-stage.yasdevops.dev
                   storefrontHost: storefront-stage.yasdevops.dev
                   kibanaHost: kibana-stage.yasdevops.dev
@@ -340,7 +340,7 @@ spec:
                 - env: dev
                   project: yas-dev
                   namespace: yas-dev
-                  apiHost: api.local.test
+                  apiHost: api-dev.yasdevops.dev
                   valuesFile: ../../../overlays/dev/helm-values.yaml
                 - env: stage
                   project: yas-stage

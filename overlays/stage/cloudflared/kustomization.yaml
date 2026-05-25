@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: cloudflared-stage
+resources:
+  - namespace.yaml
+  - ../../../base/infrastructure/cloudflared
+  - ../../../sealed-secrets/cloudflared/stage
+labels:
+  - pairs:
+      environment: stage
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: cloudflared
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 0

@@ -51,6 +51,58 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
+  name: yas-cloudflared-environments
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - list:
+        elements:
+          - env: dev
+            appName: yas-dev-cloudflared
+            project: yas-dev
+            namespace: cloudflared-dev
+            path: overlays/dev/cloudflared
+          - env: stage
+            appName: yas-stage-cloudflared
+            project: yas-stage
+            namespace: cloudflared-stage
+            path: overlays/stage/cloudflared
+  template:
+    metadata:
+      name: "{{.appName}}"
+      annotations:
+        argocd.argoproj.io/sync-wave: "9"
+      labels:
+        app.kubernetes.io/part-of: yas
+        environment: "{{.env}}"
+    spec:
+      project: "{{.project}}"
+      source:
+        repoURL: https://github.com/pnthai285/yas-gitops.git
+        targetRevision: feat/multienv-gitops-secret
+        path: "{{.path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - RespectIgnoreDifferences=true
+      ignoreDifferences:
+        - group: ""
+          kind: Secret
+          jqPathExpressions:
+            - .data
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
   name: yas-preview-environments
   namespace: argocd
 spec:
