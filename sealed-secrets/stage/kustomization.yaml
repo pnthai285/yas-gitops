@@ -1,3 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-resources: []
+resources:
+  - yas-postgresql-credentials-secret.yaml
+  - yas-elasticsearch-credentials-secret.yaml
+  - yas-keycloak-credentials-secret.yaml
+  - yas-redis-credentials-secret.yaml
+  - yas-openai-api-key-secret.yaml
+  - keycloak-credentials.yaml
+  - postgresql-credentials.yaml
+  - pgadmin-password.yaml
+  - grafana-admin-credentials.yaml
+  - postgresql-credentials-kafka.yaml

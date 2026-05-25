@@ -9,7 +9,7 @@ output_file="${1:-${current_dir}/all-contents.txt}"
 rm -f "$output_file"
 
 # Quét TOÀN BỘ file, trừ đuôi .jar và thư mục .git
-find "$current_dir" -type f ! -name "*.jar" ! -name "*.tgz" ! -path "*/.git/*" ! -path "*/.kube/*" | sort | while IFS= read -r file_path; do
+find "$current_dir" -type f ! -name "*.jar" ! -name "*.tgz" ! -name "*.env" ! -path "*/.git/*" ! -path "*/.kube/*" | sort | while IFS= read -r file_path; do
       # Lấy đường dẫn tuyệt đối của file
       abs_path="$(readlink -f "$file_path")"
       
