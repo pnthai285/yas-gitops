@@ -45,13 +45,21 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.extraEnvFroms }}
           envFrom:
-            - secretRef:
-                name: yas-postgresql-credentials-secret
-            {{- with .Values.extraEnvFroms }}
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
+            - name: POSTGRESQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.existingSecret | quote }}
+                  key: {{ .Values.postgresql.usernameKey | quote }}
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgresql.existingSecret | quote }}
+                  key: {{ .Values.postgresql.passwordKey | quote }}
             - name: LOGGING_CONFIG
               value: {{ .Values.logbackXmlPath }}
             - name: SPRING_DATASOURCE_URL

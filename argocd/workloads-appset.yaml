@@ -296,7 +296,7 @@ spec:
             - name: grafana.createSecret
               value: "false"
             - name: postgresql.existingSecret
-              value: postgresql-credentials
+              value: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
             - name: postgresql.host
               value: postgresql
             - name: postgresql.createSecret

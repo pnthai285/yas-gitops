@@ -40,6 +40,10 @@ httpPort: 80
 metricPort: 8090
 databaseConnectionUrl: jdbc:postgresql://postgresql:5432
 databaseName: postgres
+postgresql:
+  existingSecret: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
+  usernameKey: username
+  passwordKey: password
 
 deployment:
   annotations:

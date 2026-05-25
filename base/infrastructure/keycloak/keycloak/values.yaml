@@ -44,7 +44,7 @@ ingress:
 
 postgresql:
   host: postgresql
-  existingSecret: postgresql-credentials
+  existingSecret: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
   createSecret: false
   username: ""
   # Password must be provided via SealedSecret named: postgresql-credentials

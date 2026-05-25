@@ -4,7 +4,7 @@ zookeeper:
   replicas: 1
   storeSize: 5Gi
 postgresql:
-  existingSecret: postgresql.credentials
+  existingSecret: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
   createSecret: false
   host: postgresql
   username: ""
