@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export KUBECONFIG="${KUBECONFIG:-./.kube/k3s-config.yaml}"
+export KUBECONFIG="${YAS_KUBECONFIG:-./.kube/k3s-config.yaml}"
+KUBESEAL_CONTROLLER_NAME="${KUBESEAL_CONTROLLER_NAME:-sealed-secrets-controller}"
+KUBESEAL_CONTROLLER_NAMESPACE="${KUBESEAL_CONTROLLER_NAMESPACE:-kube-system}"
 
 usage() {
   cat <<'USAGE'
@@ -61,9 +63,16 @@ seal_secret() {
     --dry-run=client \
     -o yaml \
     "$@" \
-    | kubeseal --format yaml "$scope_flag" > "$output_file"
+    | kubeseal \
+        --controller-name "$KUBESEAL_CONTROLLER_NAME" \
+        --controller-namespace "$KUBESEAL_CONTROLLER_NAMESPACE" \
+        --format yaml \
+        "$scope_flag" > "$output_file"
 
-  kubeseal --validate < "$output_file"
+  kubeseal \
+    --controller-name "$KUBESEAL_CONTROLLER_NAME" \
+    --controller-namespace "$KUBESEAL_CONTROLLER_NAMESPACE" \
+    --validate < "$output_file"
 }
 
 write_kustomization() {
