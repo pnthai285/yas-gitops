@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: yas-preview-CHANGE_ID
+  labels:
+    app.kubernetes.io/part-of: yas
+    environment: preview
+    istio.io/dataplane-mode: ambient

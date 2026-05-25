@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "ui.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
+{{- $root := . -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
@@ -30,16 +31,16 @@ spec:
   tls:
     {{- with .Values.ingress.tls }}
     - hosts:
-        - {{ .host | quote }}
+        - {{ tpl .host $root | quote }}
       secretName: {{ .secretName }}
     {{- end }}
   {{- end }}
   rules:
     {{- with .Values.ingress }}
-    - host: {{ .host}}
+    - host: {{ tpl .host $root | quote }}
       http:
         paths:
-          - path: {{ .path }}
+          - path: {{ .path | quote }}
             pathType: {{ .pathType }}
             backend:
               service:

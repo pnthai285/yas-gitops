@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: {{ .Values.hostname }}
+  - host: {{ tpl .Values.hostname . | quote }}
     http:
       paths:
       - path: /

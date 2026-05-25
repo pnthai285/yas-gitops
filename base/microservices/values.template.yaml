@@ -1,3 +1,6 @@
+global:
+  apiHost: api.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-{{service}}
@@ -9,5 +12,5 @@ backend:
 
   ingress:
     enabled: true
-    host: api.yasdevops.dev
+    host: "{{ .Values.global.apiHost }}"
     path: /{{service}}

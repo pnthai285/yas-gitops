@@ -1,3 +1,8 @@
+global:
+  environment: dev
+  domain: yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-backoffice-bff
@@ -10,11 +15,11 @@ backend:
       configmap.reloader.stakater.com/reload: "yas-gateway-routes-config-configmap,backoffice-bff-extra-configmap"
   ingress:
     enabled: true
-    host: backoffice.yasdevops.dev
+    host: "{{ .Values.global.backofficeHost }}"
     path: /
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: prod
+      value: "{{ .Values.global.environment }}"
     - name: UI_HOST
       value: http://backoffice-ui:3000
   extraEnvFroms:

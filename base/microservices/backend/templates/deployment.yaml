@@ -25,10 +25,6 @@ spec:
       labels:
         {{- include "backend.selectorLabels" . | nindent 8 }}
     spec:
-      hostAliases:
-        - ip: "10.0.2.112"  # IP Node K8s của bạn
-          hostnames:
-            - "identity.yasdevops.dev"
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -68,7 +64,7 @@ spec:
               value: /opt/yas/config/application.yaml
             {{- end }}
             {{- with .Values.extraEnvs }}
-              {{- toYaml . | nindent 12 }}
+              {{- tpl (toYaml .) $ | nindent 12 }}
             {{- end }}
           volumeMounts:
             - mountPath: /opt/yas/config

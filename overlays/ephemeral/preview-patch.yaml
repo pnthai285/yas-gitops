@@ -1,0 +1,10 @@
+global:
+  environment: preview
+  domain: yasdevops.dev
+  apiHost: api-pr-CHANGE_ID.yasdevops.dev
+  apiUrl: https://api-pr-CHANGE_ID.yasdevops.dev
+  identityHost: identity-pr-CHANGE_ID.yasdevops.dev
+  identityUrl: https://identity-pr-CHANGE_ID.yasdevops.dev
+  backofficeHost: backoffice-pr-CHANGE_ID.yasdevops.dev
+  storefrontHost: storefront-pr-CHANGE_ID.yasdevops.dev
+  storefrontUrl: http://storefront-pr-CHANGE_ID.yasdevops.dev

@@ -1,0 +1,10 @@
+global:
+  environment: stage
+  domain: yasdevops.dev
+  apiHost: api-stage.yasdevops.dev
+  apiUrl: https://api-stage.yasdevops.dev
+  identityHost: identity-stage.yasdevops.dev
+  identityUrl: https://identity-stage.yasdevops.dev
+  backofficeHost: backoffice-stage.yasdevops.dev
+  storefrontHost: storefront-stage.yasdevops.dev
+  storefrontUrl: http://storefront-stage.yasdevops.dev

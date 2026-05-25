@@ -1,3 +1,13 @@
+global:
+  domain: yasdevops.dev
+  apiHost: api.yasdevops.dev
+  identityHost: identity.yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+  identityUrl: https://identity.yasdevops.dev
+  apiUrl: https://api.yasdevops.dev
+  storefrontUrl: http://storefront.yasdevops.dev
+
 credentials:
   postgresql:
     username: yasadminuser
@@ -58,7 +68,7 @@ applicationConfig:
       oauth2:
         resourceserver:
           jwt:
-            issuer-uri: https://identity.yasdevops.dev/realms/Yas
+            issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
 
     cloud:
       gateway:
@@ -179,8 +189,8 @@ applicationConfig:
 
   springdoc:
     oauthflow:
-      authorization-url: https://identity.yasdevops.dev/realms/Yas/protocol/openid-connect/auth
-      token-url: https://identity.yasdevops.dev/realms/Yas/protocol/openid-connect/token
+      authorization-url: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
+      token-url: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
 
   yas:
     services:
@@ -325,7 +335,7 @@ backofficeBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: https://identity.yasdevops.dev/realms/Yas
+              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
           registration:
             api-client:
               provider: keycloak
@@ -345,7 +355,7 @@ storefrontBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: https://identity.yasdevops.dev/realms/Yas
+              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
           registration:
             api-client:
               provider: keycloak
@@ -359,12 +369,12 @@ mediaApplicationConfig:
     servlet:
       context-path: /media
   yas:
-    publicUrl: http://api.yasdevops.dev/media
+    publicUrl: "{{ .Values.global.apiUrl }}/media"
 
 # Customer application config custom
 customerApplicationConfig:
   keycloak:
-    auth-server-url: https://identity.yasdevops.dev
+    auth-server-url: "{{ .Values.global.identityUrl }}"
     realm: Yas
     resource: customer-management
     credentials:
@@ -381,7 +391,7 @@ searchApplicationConfig:
 paymentPaypalApplicationConfig:
   yas:
     public:
-      url: http://storefront.yasdevops.dev/complete-payment
+      url: "{{ .Values.global.storefrontUrl }}/complete-payment"
 
 # Recommendation application config custom
 recommendationApplicationConfig:

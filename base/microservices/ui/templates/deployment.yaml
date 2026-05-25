@@ -40,7 +40,7 @@ spec:
         - name: {{ include "ui.fullname" . }}
           {{- if .Values.extraEnvs }}
           env:
-            {{- toYaml .Values.extraEnvs | nindent 12 }}
+            {{- tpl (toYaml .Values.extraEnvs) . | nindent 12 }}
           {{- end }}
           {{- if .Values.extraVolumeMounts }}
           volumeMounts:

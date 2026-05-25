@@ -1,6 +1,43 @@
-hostname: identity.yasdevops.dev   
-backofficeRedirectUrl: https://backoffice.yasdevops.dev
-storefrontRedirectUrl: https://storefront.yasdevops.dev
+global:
+  domain: yasdevops.dev
+  apiHost: api.yasdevops.dev
+  identityHost: identity.yasdevops.dev
+  backofficeHost: backoffice.yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+
+hostname: "{{ .Values.global.identityHost }}"
+backofficeRedirectUrl: "https://{{ .Values.global.backofficeHost }}"
+storefrontRedirectUrl: "https://{{ .Values.global.storefrontHost }}"
+backofficeRedirectUris:
+  - http://localhost:3000/*
+  - http://localhost:8087/*
+  - http://{{ .Values.global.backofficeHost }}
+  - https://{{ .Values.global.backofficeHost }}
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak/*
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak/*
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client
+  - http://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client/*
+  - https://{{ .Values.global.backofficeHost }}/login/oauth2/code/api-client/*
+storefrontRedirectUris:
+  - http://localhost:3000/*
+  - http://localhost:8087/*
+  - http://{{ .Values.global.storefrontHost }}
+  - https://{{ .Values.global.storefrontHost }}
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak/*
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak/*
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client
+  - http://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client/*
+  - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client/*
+swaggerRedirectUris:
+  - http://{{ .Values.global.apiHost }}/swagger-ui/*
+swaggerWebOrigins:
+  - http://{{ .Values.global.apiHost }}
 ingress:
   enabled: true
   className: nginx

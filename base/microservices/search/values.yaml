@@ -1,3 +1,6 @@
+global:
+  environment: dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-search
@@ -10,7 +13,7 @@ backend:
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: "prod"
+      value: "{{ .Values.global.environment }}"
 
   # SỬA: Đổi tên secret trùng khớp với hạ tầng elasticsearch tạo ra
   extraEnvFroms:

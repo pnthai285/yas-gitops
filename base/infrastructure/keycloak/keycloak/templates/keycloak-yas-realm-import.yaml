@@ -526,19 +526,9 @@ spec:
         clientAuthenticatorType: client-secret
         secret: TVacLC0cQ8tiiEKiTVerTb2YvwQ1TRJF
         redirectUris:
-          # - "{{ .Values.backofficeRedirectUrl }}/*"
-            - "http://localhost:3000/*"
-            - "http://localhost:8087/*"
-            - "http://backoffice.yasdevops.dev"
-            - "https://backoffice.yasdevops.dev"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/keycloak"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/keycloak"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/api-client"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/api-client"
-            - "http://backoffice.yasdevops.dev/login/oauth2/code/api-client/*"
-            - "https://backoffice.yasdevops.dev/login/oauth2/code/api-client/*"
+{{ range .Values.backofficeRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
         webOrigins: [ ]
         notBefore: 0
         bearerOnly: false
@@ -830,19 +820,9 @@ spec:
         clientAuthenticatorType: client-secret
         secret: ZrU9I0q2uXBglBnmvyJdkl1lf0ncr8tn
         redirectUris:
-          # - "{{ .Values.storefrontRedirectUrl }}/*"
-            - "http://localhost:3000/*"
-            - "http://localhost:8087/*"
-            - "http://storefront.yasdevops.dev"
-            - "https://storefront.yasdevops.dev"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/keycloak"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/keycloak"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/keycloak/*"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/api-client"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/api-client"
-            - "http://storefront.yasdevops.dev/login/oauth2/code/api-client/*"
-            - "https://storefront.yasdevops.dev/login/oauth2/code/api-client/*"
+{{ range .Values.storefrontRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
         webOrigins: [ ]
         notBefore: 0
         bearerOnly: false
@@ -954,7 +934,9 @@ spec:
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
         redirectUris:
-          - http://api.yasdevops.dev/swagger-ui/*
+{{ range .Values.swaggerRedirectUris }}
+          - {{ tpl . $ | quote }}
+{{ end }}
           - http://localhost:8080/*
           - http://localhost:8081/*
           - http://localhost:8083/*
@@ -968,7 +950,9 @@ spec:
           - http://localhost:8092/*
           - http://localhost:8093/*
         webOrigins:
-          - http://api.yasdevops.dev
+{{ range .Values.swaggerWebOrigins }}
+          - {{ tpl . $ | quote }}
+{{ end }}
           - http://localhost:8080
           - http://localhost:8081
           - http://localhost:8083

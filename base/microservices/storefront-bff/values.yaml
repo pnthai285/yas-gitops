@@ -1,3 +1,8 @@
+global:
+  environment: dev
+  domain: yasdevops.dev
+  storefrontHost: storefront.yasdevops.dev
+
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-storefront-bff
@@ -12,12 +17,12 @@ backend:
 
   ingress:
     enabled: true
-    host: storefront.yasdevops.dev
+    host: "{{ .Values.global.storefrontHost }}"
     path: /
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
-      value: prod
+      value: "{{ .Values.global.environment }}"
     - name: UI_HOST
       value: http://storefront-ui:3000
   extraEnvFroms:
