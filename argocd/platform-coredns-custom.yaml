@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-coredns-custom
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app.kubernetes.io/part-of: yas
+    environment: platform
+spec:
+  project: yas-platform
+  source:
+    repoURL: https://github.com/pnthai285/yas-gitops.git
+    targetRevision: feat/multienv-gitops-secret
+    path: platform/coredns
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

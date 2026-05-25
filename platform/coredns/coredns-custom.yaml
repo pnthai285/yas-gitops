@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/part-of: yas
+    app.kubernetes.io/component: dns
+data:
+  yas-hostname-rewrite.override: |
+    rewrite name identity-dev.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name identity-stage.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name backoffice-dev.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name backoffice-stage.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name storefront-dev.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name storefront-stage.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name api-dev.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
+    rewrite name api-stage.yasdevops.dev ingress-nginx-controller.ingress-nginx.svc.cluster.local
