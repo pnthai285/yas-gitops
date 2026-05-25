@@ -6,6 +6,7 @@ global:
   storefrontHost: storefront.yasdevops.dev
 
 hostname: "{{ .Values.global.identityHost }}"
+scheme: http
 backofficeRedirectUrl: "https://{{ .Values.global.backofficeHost }}"
 storefrontRedirectUrl: "https://{{ .Values.global.storefrontHost }}"
 backofficeRedirectUris:

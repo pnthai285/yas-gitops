@@ -4,7 +4,8 @@ global:
   apiHost: api-dev.yasdevops.dev
   apiUrl: https://api-dev.yasdevops.dev
   identityHost: identity-dev.yasdevops.dev
-  identityUrl: https://identity-dev.yasdevops.dev
+  identityScheme: http
+  identityUrl: http://identity-dev.yasdevops.dev
   backofficeHost: backoffice-dev.yasdevops.dev
   storefrontHost: storefront-dev.yasdevops.dev
   storefrontUrl: http://storefront-dev.yasdevops.dev

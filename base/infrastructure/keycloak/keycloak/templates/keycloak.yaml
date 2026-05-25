@@ -21,7 +21,7 @@ spec:
     httpEnabled: true
     httpPort: 80
   hostname:
-    hostname: {{ printf "https://%s" (tpl .Values.hostname .) | quote }}
+    hostname: {{ printf "%s://%s" .Values.scheme (tpl .Values.hostname .) | quote }}
     backchannelDynamic: false
     strict: false
   proxy:

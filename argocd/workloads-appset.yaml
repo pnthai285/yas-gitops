@@ -225,6 +225,7 @@ spec:
                   domain: dev.yasdevops.dev
                   apiHost: api-dev.yasdevops.dev
                   identityHost: identity-dev.yasdevops.dev
+                  identityScheme: http
                   backofficeHost: backoffice-dev.yasdevops.dev
                   storefrontHost: storefront-dev.yasdevops.dev
                 - env: stage
@@ -233,6 +234,7 @@ spec:
                   domain: stage.yasdevops.dev
                   apiHost: api-stage.yasdevops.dev
                   identityHost: identity-stage.yasdevops.dev
+                  identityScheme: http
                   backofficeHost: backoffice-stage.yasdevops.dev
                   storefrontHost: storefront-stage.yasdevops.dev
           - list:
@@ -281,6 +283,8 @@ spec:
               value: "{{.identityHost}}"
             - name: hostname
               value: "{{.identityHost}}"
+            - name: scheme
+              value: "{{.identityScheme}}"
             - name: backofficeRedirectUrl
               value: "https://{{.backofficeHost}}"
             - name: storefrontRedirectUrl
