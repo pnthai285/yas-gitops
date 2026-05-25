@@ -8,3 +8,9 @@ global:
   backofficeHost: backoffice-dev.yasdevops.dev
   storefrontHost: storefront-dev.yasdevops.dev
   storefrontUrl: http://storefront-dev.yasdevops.dev
+backend:
+  image:
+    tag: ""
+ui:
+  image:
+    tag: ""

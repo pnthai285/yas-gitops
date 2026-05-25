@@ -2,7 +2,8 @@ domain: yasdevops.dev
 postgresql:
   replicas: 1
   username: yasadminuser
-  password: admin
+  # Password must be provided via SealedSecret named: yas-postgresql-credentials-secret
+  password: ""
 kafka:
   replicas: 1
 zookeeper:
@@ -10,15 +11,19 @@ zookeeper:
 elasticsearch:
   replicas: 1
   username: yas
-  password: LarUmB3A49NTg9YmgW4=
+  # Password must be provided via SealedSecret named: yas-elasticsearch-credentials-secret
+  password: ""
 keycloak:
   bootstrapAdmin:
     username: admin
-    password: admin
+    # Password must be provided via SealedSecret named: keycloak-credentials
+    password: ""
   backofficeRedirectUrl: https://backoffice.yasdevops.dev
   storefrontRedirectUrl: https://storefront.yasdevops.dev
 grafana:
   username: admin
-  password: admin
+  # Password must be provided via SealedSecret named: grafana-admin-credentials
+  password: ""
 redis:
-  password: redis
+  # Password must be provided via SealedSecret named: yas-redis-credentials-secret
+  password: ""

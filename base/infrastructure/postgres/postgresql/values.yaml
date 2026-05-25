@@ -1,5 +1,8 @@
 username: yasadminuser
-password: admin
+existingSecret: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
+createSecret: false
+# Password must be provided via SealedSecret named: yasadminuser.postgresql.credentials.postgresql.acid.zalan.do
+password: ""
 replicas: 1
 postgresqlVersion: "15"
 volumeSize: "10Gi"

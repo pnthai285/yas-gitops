@@ -8,21 +8,18 @@ global:
   apiUrl: https://api.yasdevops.dev
   storefrontUrl: http://storefront.yasdevops.dev
 
-credentials:
-  postgresql:
-    username: yasadminuser
-    password: admin
-  elasticsearch:
-    username: yas
-    password: LarUmB3A49NTg9YmgW4=
-  keycloak:
-    backofficeBffClientSecret: TVacLC0cQ8tiiEKiTVerTb2YvwQ1TRJF
-    storefrontBffClientSecret: ZrU9I0q2uXBglBnmvyJdkl1lf0ncr8tn
-    customerManagementClientSecret: NKAr3rnjwm9jlakgKpelukZGFaHYqIWE
-  redis:
-    password: redis
-  openai:
-    apiKey: update-me
+secretManagement:
+  refs:
+    postgresql:
+      name: yas-postgresql-credentials-secret
+    elasticsearch:
+      name: yas-elasticsearch-credentials-secret
+    keycloak:
+      name: yas-keycloak-credentials-secret
+    redis:
+      name: yas-redis-credentials-secret
+    openai:
+      name: yas-openai-api-key-secret
 
 #Genneral application.yaml for all microservice
 applicationConfig:

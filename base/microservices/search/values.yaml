@@ -4,7 +4,7 @@ global:
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-search
-    tag: latest
+    tag: ""
   nameOverride: search
   fullnameOverride: search
   databaseName: search

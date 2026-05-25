@@ -5,7 +5,7 @@ global:
 ui:
   image:
     repository: ghcr.io/nashtech-garage/yas-storefront
-    tag: latest
+    tag: ""
   nameOverride: storefront-ui
   fullnameOverride: storefront-ui
 #  extraVolumes:

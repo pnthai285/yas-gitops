@@ -1,8 +1,12 @@
 hostname: grafana.yasdevops.dev
 grafana:
+  existingSecret: grafana-admin-credentials
+  createSecret: false
   username: admin
-  password: admin
+  # Password must be provided via SealedSecret named: grafana-admin-credentials
+  password: ""
 postgresql:
   url: postgresql.postgres:5432
   username: yasadminuser
-  password: admin
+  # Password must be provided via SealedSecret or operator-managed Postgres user secret
+  password: ""

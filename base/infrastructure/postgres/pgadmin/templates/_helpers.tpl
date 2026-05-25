@@ -62,5 +62,5 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "pgadmin.passwordSecret" -}}
-{{ include "pgadmin.fullname" . }}-password
+{{- default (printf "%s-password" (include "pgadmin.fullname" .)) .Values.pgadmin.existingSecret -}}
 {{- end }}

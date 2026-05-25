@@ -9,10 +9,11 @@ grafana:
       host: postgresql.postgres.svc.cluster.local:5432
       name: grafana
       user: yasadminuser
-      password: admin
+      password: ""
       ssl_mode: require
   adminUser: admin
-  adminPassword: admin
+  adminPassword: ""
+  # Passwords must be provided via SealedSecret-backed values or an external secret integration.
   ingress:
     ingressClassName: nginx
     enabled: true

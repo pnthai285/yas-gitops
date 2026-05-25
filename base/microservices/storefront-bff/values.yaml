@@ -6,7 +6,7 @@ global:
 backend:
   image:
     repository: ghcr.io/nashtech-garage/yas-storefront-bff
-    tag: latest
+    tag: ""
 
   nameOverride: storefront-bff
   fullnameOverride: storefront-bff

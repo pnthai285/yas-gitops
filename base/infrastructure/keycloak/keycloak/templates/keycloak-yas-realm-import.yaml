@@ -524,7 +524,6 @@ spec:
         enabled: true
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
-        secret: TVacLC0cQ8tiiEKiTVerTb2YvwQ1TRJF
         redirectUris:
 {{ range .Values.backofficeRedirectUris }}
           - {{ tpl . $ | quote }}
@@ -629,7 +628,6 @@ spec:
         enabled: true
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
-        secret: NKAr3rnjwm9jlakgKpelukZGFaHYqIWE
         redirectUris:
           - ''
         webOrigins: [ ]
@@ -818,7 +816,6 @@ spec:
         enabled: true
         alwaysDisplayInConsole: false
         clientAuthenticatorType: client-secret
-        secret: ZrU9I0q2uXBglBnmvyJdkl1lf0ncr8tn
         redirectUris:
 {{ range .Values.storefrontRedirectUris }}
           - {{ tpl . $ | quote }}

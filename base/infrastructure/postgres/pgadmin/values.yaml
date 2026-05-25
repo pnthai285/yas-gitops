@@ -32,8 +32,11 @@ securityContext: {}
 # runAsUser: 1000
 
 pgadmin:
+  existingSecret: pgadmin-password
+  createSecret: false
   user: admin@yas.com
-  password: admin
+  # Password must be provided via SealedSecret named: pgadmin-password
+  password: ""
 persistence:
   enabled: true
   accessMode: ReadWriteOnce

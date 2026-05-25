@@ -1,7 +1,7 @@
 ui:
   image:
     repository: ghcr.io/nashtech-garage/yas-backoffice
-    tag: latest
+    tag: ""
   nameOverride: backoffice-ui
   fullnameOverride: backoffice-ui
   ingress:

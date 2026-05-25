@@ -1,10 +1,16 @@
 # Kubernetes/Kubeconfig
 .kube/
 kubeconfig
+all-contents.txt
 
 # Helm
 charts/
 *.tgz
+
+# Local-only plaintext inputs for kubeseal.
+secrets-raw/
+*.secret.yaml
+*.secret.yml
 
 # Local cluster tools
 .minikube/

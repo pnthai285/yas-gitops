@@ -9,8 +9,8 @@ spec:
   config:
     database.hostname: postgresql.postgres
     database.port: 5432
-    database.user: ${secrets:postgresql.credentials:username}
-    database.password: ${secrets:postgresql.credentials:password}
+    database.user: ${secrets:{{ .Values.postgresql.existingSecret }}:username}
+    database.password: ${secrets:{{ .Values.postgresql.existingSecret }}:password}
     topic.prefix: dbproduct
     database.dbname: product
     table.include.list: public.product

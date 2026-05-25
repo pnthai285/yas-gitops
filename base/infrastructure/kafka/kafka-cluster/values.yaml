@@ -4,8 +4,11 @@ zookeeper:
   replicas: 1
   storeSize: 5Gi
 postgresql:
-  username: yasadminuser
-  password: admin
+  existingSecret: postgresql.credentials
+  createSecret: false
+  username: ""
+  # Password must be provided via SealedSecret named: postgresql.credentials
+  password: ""
 debeziumConnect:
   image: ghcr.io/nashtech-garage/debezium-connect-postgresql:latest
   buildImage: false #Enabled when build debezium-connect-postgresql image

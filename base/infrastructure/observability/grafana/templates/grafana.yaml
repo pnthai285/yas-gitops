@@ -8,8 +8,8 @@ spec:
   external:
     url: http://prometheus-grafana
     adminPassword:
-      name: grafana-admin-credentials
-      key: username
-    adminUser:
-      name: grafana-admin-credentials
+      name: {{ .Values.grafana.existingSecret | quote }}
       key: password
+    adminUser:
+      name: {{ .Values.grafana.existingSecret | quote }}
+      key: username

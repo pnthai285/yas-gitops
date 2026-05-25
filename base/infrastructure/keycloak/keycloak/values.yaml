@@ -43,9 +43,15 @@ ingress:
   className: nginx
 
 postgresql:
-  username: yasadminuser
-  password: admin
+  existingSecret: postgresql-credentials
+  createSecret: false
+  username: ""
+  # Password must be provided via SealedSecret named: postgresql-credentials
+  password: ""
 
 bootstrapAdmin:
+  existingSecret: keycloak-credentials
+  createSecret: false
   username: admin
-  password: admin
+  # Password must be provided via SealedSecret named: keycloak-credentials
+  password: ""

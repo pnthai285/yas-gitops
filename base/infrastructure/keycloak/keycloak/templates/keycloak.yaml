@@ -5,14 +5,14 @@ metadata:
 spec:
   bootstrapAdmin:
     user:
-      secret: keycloak-credentials
+      secret: {{ .Values.bootstrapAdmin.existingSecret | quote }}
   db:
     vendor: postgres
     usernameSecret:
-      name: postgresql-credentials
+      name: {{ .Values.postgresql.existingSecret | quote }}
       key: username
     passwordSecret:
-      name: postgresql-credentials
+      name: {{ .Values.postgresql.existingSecret | quote }}
       key: password
     host: postgresql.postgres
     database: keycloak

@@ -5,5 +5,5 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["secrets"]
-    resourceNames: ["postgresql.credentials"]
+    resourceNames: [{{ .Values.postgresql.existingSecret | quote }}]
     verbs: ["get", "watch", "list"]

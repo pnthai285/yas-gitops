@@ -8,3 +8,10 @@ global:
   backofficeHost: backoffice-pr-CHANGE_ID.yasdevops.dev
   storefrontHost: storefront-pr-CHANGE_ID.yasdevops.dev
   storefrontUrl: http://storefront-pr-CHANGE_ID.yasdevops.dev
+backend:
+  image:
+    tag: ""
+  databaseName: app_pr_CHANGE_ID
+ui:
+  image:
+    tag: ""
