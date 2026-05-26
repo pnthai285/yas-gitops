@@ -38,6 +38,8 @@ backend:
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE
       value: "{{ .Values.global.environment }}"
+    - name: SERVER_FORWARD_HEADERS_STRATEGY
+      value: framework
     - name: UI_HOST
       value: http://storefront-ui:3000
   extraEnvFroms:

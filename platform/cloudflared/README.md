@@ -30,6 +30,9 @@ target tunnel -> Public Hostnames.
 
 Use `HTTP` for the service type unless noted otherwise.
 
+Use `HTTPS` for ArgoCD and enable the Cloudflare origin option that skips TLS
+verification, because `argocd-server` presents an internal service certificate.
+
 ### Dev tunnel
 
 | Public hostname | Service URL |
@@ -41,6 +44,7 @@ Use `HTTP` for the service type unless noted otherwise.
 | `kibana-dev.yasdevops.dev` | `http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80` |
 | `pgadmin-dev.yasdevops.dev` | `http://pgadmin.yas-dev.svc.cluster.local:80` |
 | `pgoperator-dev.yasdevops.dev` | `http://postgres-operator.postgres-operator.svc.cluster.local:8080` |
+| `argocd.yasdevops.dev` | `https://argocd-server.argocd.svc.cluster.local:443` |
 
 ### Stage tunnel
 
@@ -79,9 +83,10 @@ For each public hostname:
 3. Select the tunnel for the environment.
 4. Open Public Hostnames.
 5. Add hostname, for example `backoffice-dev.yasdevops.dev`.
-6. Set service type to `HTTP`.
+6. Set service type to `HTTP`, except `argocd.yasdevops.dev`, which uses `HTTPS`.
 7. Set the service URL from the table above.
-8. Save hostname.
+8. For `argocd.yasdevops.dev`, open Additional application settings -> TLS and enable `No TLS Verify`.
+9. Save hostname.
 
 Cloudflare will create the DNS CNAME automatically when the zone is managed by
 Cloudflare. If it does not, add a proxied CNAME manually that points to the
@@ -100,6 +105,7 @@ curl -I https://api-dev.yasdevops.dev/swagger-ui
 curl -I https://backoffice-dev.yasdevops.dev
 curl -I https://storefront-dev.yasdevops.dev
 curl -I https://kibana-dev.yasdevops.dev
+curl -I https://argocd.yasdevops.dev
 ```
 
 ## Stage enablement

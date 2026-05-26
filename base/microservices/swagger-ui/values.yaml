@@ -70,8 +70,6 @@ ingress:
   hosts:
     - host: "{{ .Values.global.apiHost }}"
       paths:
-        - path: /
-          pathType: Exact
         - path: /swagger-ui
           pathType: ImplementationSpecific
   tls: []

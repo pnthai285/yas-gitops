@@ -37,8 +37,10 @@ storefrontRedirectUris:
   - https://{{ .Values.global.storefrontHost }}/login/oauth2/code/api-client/*
 swaggerRedirectUris:
   - http://{{ .Values.global.apiHost }}/swagger-ui/*
+  - https://{{ .Values.global.apiHost }}/swagger-ui/*
 swaggerWebOrigins:
   - http://{{ .Values.global.apiHost }}
+  - https://{{ .Values.global.apiHost }}
 ingress:
   enabled: true
   className: nginx
