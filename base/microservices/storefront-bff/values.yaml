@@ -18,6 +18,12 @@ backend:
   ingress:
     enabled: true
     host: "{{ .Values.global.storefrontHost }}"
+    annotations:
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Port 443;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Ssl on;
     path: /api
     paths:
       - path: /api
