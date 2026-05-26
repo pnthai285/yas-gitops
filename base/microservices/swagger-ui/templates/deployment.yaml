@@ -36,6 +36,8 @@ spec:
           env:
             - name: BASE_URL
               value: {{ .Values.baseUrl | quote }}
+            - name: URLS_PRIMARY_NAME
+              value: {{ .Values.urlsPrimaryName | quote }}
             - name: URLS
               value: {{ tpl .Values.urls . | quote }}
           ports:

@@ -42,6 +42,7 @@ securityContext: {}
   # runAsUser: 1000
 
 baseUrl: /swagger-ui
+urlsPrimaryName: Product
 urls: "[{ url: '{{ .Values.global.apiUrl }}/product/v3/api-docs', name: 'Product' },
       { url: '{{ .Values.global.apiUrl }}/customer/v3/api-docs', name: 'Customer' },
       { url: '{{ .Values.global.apiUrl }}/cart/v3/api-docs', name: 'Cart' },
