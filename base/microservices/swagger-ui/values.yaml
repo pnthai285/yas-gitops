@@ -44,16 +44,13 @@ securityContext: {}
 baseUrl: /swagger-ui
 urls: "[{ url: '{{ .Values.global.apiUrl }}/product/v3/api-docs', name: 'Product' },
       { url: '{{ .Values.global.apiUrl }}/customer/v3/api-docs', name: 'Customer' },
-      { url: '{{ .Values.global.apiUrl }}/cart/v3/api-docs', name: 'Cart'},
+      { url: '{{ .Values.global.apiUrl }}/cart/v3/api-docs', name: 'Cart' },
       { url: '{{ .Values.global.apiUrl }}/media/v3/api-docs', name: 'Media' },
-      { url: '{{ .Values.global.apiUrl }}/rating/v3/api-docs', name: 'Rating' },
-      { url: '{{ .Values.global.apiUrl }}/order/v3/api-docs', name: 'Order'},
-      { url: '{{ .Values.global.apiUrl }}/payment/v3/api-docs', name: 'Payment'},
-      { url: '{{ .Values.global.apiUrl }}/location/v3/api-docs', name: 'Location'},
-      { url: '{{ .Values.global.apiUrl }}/inventory/v3/api-docs', name: 'Inventory'},
+      { url: '{{ .Values.global.apiUrl }}/order/v3/api-docs', name: 'Order' },
+      { url: '{{ .Values.global.apiUrl }}/inventory/v3/api-docs', name: 'Inventory' },
       { url: '{{ .Values.global.apiUrl }}/tax/v3/api-docs', name: 'Tax' },
-      { url: '{{ .Values.global.apiUrl }}/promotion/v3/api-docs', name: 'Promotion'},
-      { url: '{{ .Values.global.apiUrl }}/search/v3/api-docs', name: 'Search'}]"
+      { url: '{{ .Values.global.apiUrl }}/search/v3/api-docs', name: 'Search' },
+      { url: '{{ .Values.global.apiUrl }}/sampledata/v3/api-docs', name: 'Sampledata' }]"
 
 service:
   type: ClusterIP

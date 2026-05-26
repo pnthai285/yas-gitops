@@ -10,3 +10,4 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /tax
+    pathType: Prefix

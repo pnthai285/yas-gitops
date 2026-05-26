@@ -12,6 +12,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /search
+    pathType: Prefix
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE

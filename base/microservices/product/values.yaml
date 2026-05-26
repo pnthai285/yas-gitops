@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /product
+    pathType: Prefix
   extraVolumes:
     - name: product-application-config
       configMap:

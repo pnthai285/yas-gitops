@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /sampledata
+    pathType: Prefix
   extraVolumes:
     - name: sampledata-application
       configMap:

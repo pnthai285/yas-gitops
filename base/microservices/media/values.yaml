@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /media
+    pathType: Prefix
   extraVolumes:
     - name: media-application
       configMap:

@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /cart
+    pathType: Prefix
   extraVolumes:
     - name: cart-application-config
       configMap:

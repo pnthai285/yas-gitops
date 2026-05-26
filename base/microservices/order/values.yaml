@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /order
+    pathType: Prefix
   extraVolumes:
     - name: order-application-config
       configMap:

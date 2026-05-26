@@ -10,6 +10,7 @@ backend:
     enabled: true
     host: "{{ .Values.global.apiHost }}"
     path: /customer
+    pathType: Prefix
   extraEnvFroms:
     - secretRef:
         name: yas-keycloak-credentials-secret
