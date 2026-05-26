@@ -19,6 +19,21 @@ backend:
     enabled: true
     host: "{{ .Values.global.storefrontHost }}"
     path: /api
+    paths:
+      - path: /api
+        pathType: Prefix
+      - path: /oauth2
+        pathType: Prefix
+      - path: /login
+        pathType: Prefix
+      - path: /logout
+        pathType: Prefix
+      - path: /authentication
+        pathType: Prefix
+      - path: /authorized
+        pathType: Prefix
+      - path: /error
+        pathType: Prefix
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE

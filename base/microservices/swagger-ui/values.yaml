@@ -63,12 +63,15 @@ ingress:
   enabled: true
   className: "nginx"
   host: "{{ .Values.global.apiHost }}"
-  annotations: {}
+  annotations:
+    nginx.ingress.kubernetes.io/app-root: /swagger-ui
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: "{{ .Values.global.apiHost }}"
       paths:
+        - path: /
+          pathType: Exact
         - path: /swagger-ui
           pathType: ImplementationSpecific
   tls: []

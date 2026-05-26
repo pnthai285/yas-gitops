@@ -7,7 +7,9 @@ backend:
   fullnameOverride: order
   databaseName: order
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.apiHost }}"
+    path: /order
   extraVolumes:
     - name: order-application-config
       configMap:

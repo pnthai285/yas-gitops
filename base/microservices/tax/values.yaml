@@ -7,4 +7,6 @@ backend:
   fullnameOverride: tax
   databaseName: tax
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.apiHost }}"
+    path: /tax

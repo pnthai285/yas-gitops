@@ -121,6 +121,7 @@ ingress:
   annotations: {}
   host: chart-example.local
   path: /
+  paths: []
   pathType: ImplementationSpecific
   tls: {}
 #    secretName: chart-example-tls

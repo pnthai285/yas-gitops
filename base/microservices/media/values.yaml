@@ -7,7 +7,9 @@ backend:
   fullnameOverride: media
   databaseName: media
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.apiHost }}"
+    path: /media
   extraVolumes:
     - name: media-application
       configMap:

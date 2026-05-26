@@ -7,7 +7,9 @@ backend:
   fullnameOverride: sampledata
   databaseName: sampledata
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.apiHost }}"
+    path: /sampledata
   extraVolumes:
     - name: sampledata-application
       configMap:

@@ -9,7 +9,9 @@ backend:
   fullnameOverride: search
   databaseName: search
   ingress:
-    enabled: false
+    enabled: true
+    host: "{{ .Values.global.apiHost }}"
+    path: /search
 
   extraEnvs:
     - name: SPRING_PROFILES_ACTIVE

@@ -40,6 +40,17 @@ spec:
     - host: {{ tpl .host $root | quote }}
       http:
         paths:
+          {{- if .paths }}
+          {{- range .paths }}
+          - path: {{ .path | quote }}
+            pathType: {{ .pathType | default $.Values.ingress.pathType }}
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+          {{- end }}
+          {{- else }}
           - path: {{ .path | quote }}
             pathType: {{ .pathType }}
             backend:
@@ -47,5 +58,6 @@ spec:
                 name: {{ $fullName }}
                 port:
                   number: {{ $svcPort }}
+          {{- end }}
     {{- end }}
 {{- end }}
