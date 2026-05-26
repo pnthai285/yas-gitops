@@ -326,8 +326,7 @@ backofficeBffExtraConfig:
       oauth2:
         client:
           provider:
-            keycloak:
-              issuer-uri: ""
+            yas-keycloak:
               authorization-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
               token-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
               jwk-set-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/certs"
@@ -335,14 +334,14 @@ backofficeBffExtraConfig:
               user-name-attribute: preferred_username
           registration:
             keycloak:
-              provider: keycloak
+              provider: yas-keycloak
               client-id: backoffice-bff
               client-secret: ${KEYCLOAK_BACKOFFICE_BFF_CLIENT_SECRET}
               authorization-grant-type: authorization_code
               redirect-uri: 'https://{{ .Values.global.backofficeHost }}/login/oauth2/code/keycloak'
               scope: openid, profile, email, roles
             api-client:
-              provider: keycloak
+              provider: yas-keycloak
               client-id: backoffice-bff
               client-secret: ${KEYCLOAK_BACKOFFICE_BFF_CLIENT_SECRET}
               authorization-grant-type: authorization_code
@@ -360,8 +359,7 @@ storefrontBffExtraConfig:
       oauth2:
         client:
           provider:
-            keycloak:
-              issuer-uri: ""
+            yas-keycloak:
               authorization-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
               token-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
               jwk-set-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/certs"
@@ -369,14 +367,14 @@ storefrontBffExtraConfig:
               user-name-attribute: preferred_username
           registration:
             keycloak:
-              provider: keycloak
+              provider: yas-keycloak
               client-id: storefront-bff
               client-secret: ${KEYCLOAK_STOREFRONT_BFF_CLIENT_SECRET}
               authorization-grant-type: authorization_code
               redirect-uri: 'https://{{ .Values.global.storefrontHost }}/login/oauth2/code/keycloak'
               scope: openid, profile, email, roles
             api-client:
-              provider: keycloak
+              provider: yas-keycloak
               client-id: storefront-bff
               client-secret: ${KEYCLOAK_STOREFRONT_BFF_CLIENT_SECRET}
               authorization-grant-type: authorization_code
