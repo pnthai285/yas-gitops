@@ -68,7 +68,7 @@ ingress:
     - host: "{{ .Values.global.apiHost }}"
       paths:
         - path: /swagger-ui
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
