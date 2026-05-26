@@ -327,7 +327,6 @@ backofficeBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
               authorization-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
               token-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
               jwk-set-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/certs"
@@ -361,7 +360,6 @@ storefrontBffExtraConfig:
         client:
           provider:
             keycloak:
-              issuer-uri: "{{ .Values.global.identityUrl }}/realms/Yas"
               authorization-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/auth"
               token-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/token"
               jwk-set-uri: "{{ .Values.global.identityUrl }}/realms/Yas/protocol/openid-connect/certs"
