@@ -1,6 +1,8 @@
 elasticsearch:
+  version: 9.2.8
   replicas: 1
 kibana:
+  version: 9.2.8
   ingress:
     className: nginx
     hostname: kibana.yasdevops.dev
